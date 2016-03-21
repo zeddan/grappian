@@ -1,6 +1,12 @@
 import authorize as auth
 import spotify
-from bottle import route, run, request, response, static_file, redirect
+from bottle import route, run, request, response, static_file, \
+                   redirect, hook
+
+
+@hook('before_request')
+def strip_path():
+    request.environ['PATH_INFO'] = request.environ['PATH_INFO'].rstrip('/')
 
 
 @route('/static/css/<filename>')
