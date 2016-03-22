@@ -1,5 +1,6 @@
 import authorize as auth
 import spotify
+from time import time
 from bottle import route, run, request, response, static_file, \
                    redirect, hook
 
@@ -33,6 +34,7 @@ def authorize_callback():
                         path='/')
     response.set_cookie('refresh_token',
                         data['refresh_token'],
+                        expires=time()*2,
                         path='/')
     redirect('/me')
 
@@ -42,13 +44,16 @@ def me():
     access_token = request.get_cookie('access_token')
     refresh_token = request.get_cookie('refresh_token')
     if access_token:
-        token = access_token
-    elif refresh_token:
-        # code to get new access token
         pass
+    elif refresh_token:
+        access_token, expires_in = auth.refresh_token(refresh_token)
+        response.set_cookie('access_token',
+                            access_token,
+                            max_age=expires_in,
+                            path='/')
     else:
-        token = 'undefined'
-    return spotify.me(token)
+        redirect('/authorize')
+    return spotify.me(access_token)
 
 
 @route('/')

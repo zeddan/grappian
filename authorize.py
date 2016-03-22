@@ -1,3 +1,4 @@
+import requests
 from base64 import encodestring
 from requests_oauthlib import OAuth2Session
 
@@ -25,4 +26,15 @@ def get_token(auth_code):
             headers=headers,
             kwargs=token_kwargs)
     return token
+
+
+def refresh_token(token):
+    url = 'https://accounts.spotify.com/api/token'
+    auth_string = encodestring('%s:%s' % (client_id, client_secret)).replace('\n', '')
+    params = {'grant_type': 'refresh_token', 'refresh_token': token}
+    headers = {'Authorization': 'Basic %s' % auth_string}
+    data = requests.post(url, data=params, headers=headers).json()
+    access_token = data['access_token']
+    expires_in = data['expires_in']
+    return access_token, expires_in
 
