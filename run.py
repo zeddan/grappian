@@ -53,7 +53,7 @@ def me():
 
 @route('/')
 def root():
-    return "hey hey hey"
+    return static_file('index.html', root='./static')
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
