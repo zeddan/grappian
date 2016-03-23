@@ -1,12 +1,13 @@
 body{
-	background-color: #0CBF9D;
-	
+	background-color: #0CBF9D;	
 }
+
 .page_title{
 	text-align: center;
 	color:white;
 }
-	.welcomeMessage{
+
+.welcomeMessage{
 	font-family: 'Quicksand', sans-serif;
     background-color: #E98866;
     margin: 2em auto;
@@ -17,15 +18,18 @@ body{
     padding: 0.5em 4.5em;
     font-weight: 400;
 }
+
 .uppercase{
 	text-transform: uppercase;
 }
+
 .infoText{
 	font-family: 'Quicksand', sans-serif;
 	color: #fff;
 	margin: 1em auto;
 	font-size: 20px;
 }
+
 .loginBtn a{
 	font-family: 'Quicksand', sans-serif;
 	display: -webkit-inline-box;
@@ -38,9 +42,11 @@ body{
 	text-decoration: none;
 	color: #FDE037;
 }
+
 .loginBtn a:active{
 	margin: 3.2em auto;
 }
+
 .center{
 	text-align: center;
 }
