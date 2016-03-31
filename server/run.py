@@ -35,6 +35,13 @@ def authorize_callback():
     redirect('/me')
 
 
+@route('/api/casual')
+def casual():
+    genre = request.query.genre
+    mood = request.query.mood
+    return echonest.get_casual(genre, mood)
+
+
 @route('/me')
 def me():
     access_token = request.get_cookie('access_token')
