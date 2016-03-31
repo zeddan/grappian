@@ -1,5 +1,6 @@
 import authorize as auth
 import spotify
+import echonest
 from time import time
 from bottle import route, run, request, response, static_file, \
                    redirect, hook
@@ -10,14 +11,9 @@ def strip_path():
     request.environ['PATH_INFO'] = request.environ['PATH_INFO'].rstrip('/')
 
 
-@route('/static/css/<filename>')
-def static_css(filename):
-    return static_file(filename, root='../public/static/css')
-
-
-@route('/static/js/<filename>')
-def static_js(filename):
-    return static_file(filename, root='../public/static/js')
+@route('/static/:path#.+#')
+def static(path):
+    return static_file(path, root='../public/static')
 
 
 @route('/authorize')
@@ -37,6 +33,13 @@ def authorize_callback():
                         expires=time()*2,
                         path='/')
     redirect('/me')
+
+
+@route('/api/casual')
+def casual():
+    genre = request.query.genre
+    mood = request.query.mood
+    return echonest.get_casual(genre, mood)
 
 
 @route('/me')
