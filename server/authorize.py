@@ -6,7 +6,8 @@ from requests_oauthlib import OAuth2Session
 client_id = '02aafc3c13da482f9b44676b065792fd'
 client_secret = '169817bde569498c8aba668836376a35'
 redirect_uri = 'http://localhost:8080/authorize/callback'
-oauth = OAuth2Session(client_id, redirect_uri=redirect_uri)
+scope = u'playlist-modify-public playlist-modify-private'
+oauth = OAuth2Session(client_id, redirect_uri=redirect_uri, scope=scope)
 
 
 def get_url():
