@@ -20,11 +20,8 @@ def get_casual(genre, mood):
 
 
 def parse(response):
-    data = {}
-    i = 0
+    data = []
     for artist in response[u'response'][u'songs']:
-        i = i+1
-        key = 'artist' + str(i)
         new_dict = {}
         new_dict['artist_name'] = artist[u'artist_name']
         new_dict['song_title'] = artist[u'title']
@@ -32,7 +29,7 @@ def parse(response):
             new_dict['artist_id'] = artistid[u'foreign_id']
         for songid in artist[u'tracks']:
             new_dict['song_id'] = songid[u'foreign_id']
-        data.update({key: new_dict})
+        data.append(new_dict)
     return data
 
 
