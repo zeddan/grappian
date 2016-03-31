@@ -12,12 +12,12 @@ def strip_path():
 
 @route('/static/css/<filename>')
 def static_css(filename):
-    return static_file(filename, root='./public/static/css')
+    return static_file(filename, root='../public/static/css')
 
 
 @route('/static/js/<filename>')
 def static_js(filename):
-    return static_file(filename, root='./public/static/js')
+    return static_file(filename, root='../public/static/js')
 
 
 @route('/authorize')
@@ -58,7 +58,7 @@ def me():
 
 @route('/')
 def root():
-    return static_file('index.html', root='./public')
+    return static_file('index.html', root='../public')
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
