@@ -28,5 +28,3 @@ def test_print(response):
     This a method for testing. Should be deleted after sprint 2
     '''
     print response
-
-test_print(get_casual('ambient dub', 'sad'))
