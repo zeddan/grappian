@@ -59,6 +59,23 @@ def me():
     return spotify.me(access_token)
 
 
+@route('/create-playlist')
+def create_playlist():
+    access_token = request.get_cookie('access_token')
+    refresh_token = request.get_cookie('refresh_token')
+    if access_token:
+        pass
+    elif refresh_token:
+        access_token, expires_in = auth.refresh_token(refresh_token)
+        response.set_cookie('access_token',
+                            access_token,
+                            max_age=expires_in,
+                            path='/')
+    else:
+        redirect('/authorize')
+    return spotify.create_playlist(access_token)
+
+
 @route('/')
 def root():
     return static_file('index.html', root='./public')
