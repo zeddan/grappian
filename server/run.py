@@ -73,7 +73,7 @@ def create_playlist():
                             path='/')
     else:
         redirect('/authorize')
-    return spotify.create_playlist(access_token)
+    return spotify.create_playlist(access_token, 'Test playlist')
 
 
 @route('/')
