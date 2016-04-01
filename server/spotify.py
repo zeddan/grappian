@@ -9,8 +9,8 @@ def me(access_token):
 
 
 def create_playlist(access_token, name):
-    url = 'https://api.spotify.com/v1/users/zdn/playlists'
+    url = 'https://api.spotify.com/v1/users/ajsbrejker/playlists'
     headers = {'Authorization': 'Bearer %s' % access_token,
                'Content-Type': 'application/json'}
     params = {'name': name}
-    return requests.post(url, data=json.dumps(params), headers=headers).json()
+    return requests.post(url, headers=headers, data=json.dumps(params)).json()
