@@ -13,7 +13,7 @@ def strip_path():
 
 @route('/static/:path#.+#')
 def static(path):
-    return static_file(path, root='./public/static')
+    return static_file(path, root='../public/static')
 
 
 @route('/authorize')
@@ -78,7 +78,7 @@ def create_playlist():
 
 @route('/')
 def root():
-    return static_file('index.html', root='./public')
+    return static_file('index.html', root='../public')
 
 
 @route('/add-songs')
