@@ -70,11 +70,6 @@ def create_playlist():
     return spotify.create_playlist(access_token, 'Test playlist')
 
 
-@route('/')
-def root():
-    return static_file('index.html', root='../public')
-
-
 @route('/add-songs')
 def add_songs():
     """Set tmp_username and tmp_playlist to match your account details"""
@@ -90,6 +85,11 @@ def add_songs():
                                          tmp_username,
                                          tmp_playlist,
                                          song_list)
+
+
+@route('/')
+def root():
+    return static_file('index.html', root='../public')
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
