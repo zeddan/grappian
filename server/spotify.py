@@ -9,7 +9,7 @@ def me(access_token):
 
 
 def create_playlist(access_token, name):
-    """ Change what is in the brackets to fit your account"""
+    """Change what is in the brackets to fit your account"""
     url = 'https://api.spotify.com/v1/users/emilh4xx/playlists'
     headers = {'Authorization': 'Bearer %s' % access_token,
                'Content-Type': 'application/json'}
@@ -18,7 +18,7 @@ def create_playlist(access_token, name):
 
 
 def add_songs_to_playlist(access_token, user_id, playlist_id, track_list):
-    """ Fix what is in the brackets to fit your account and playlist """
+    """Fix what is in the brackets to fit your account and playlist"""
     base_url = 'https://api.spotify.com/v1/users'
     purpose_url = '/%s/playlists/%s/tracks' % (user_id, playlist_id)
     headers = {'Authorization': 'Bearer %s' % access_token,
