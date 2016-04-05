@@ -92,15 +92,15 @@ def add_songs():
     access_token = request.get_cookie('access_token')
     refresh_token = request.get_cookie('refresh_token')
     if access_token:
-            pass
+        pass
     elif refresh_token:
-            access_token, expires_in = auth.refresh_token(refresh_token)
-            response.set_cookie('access_token',
-                                access_token,
-                                max_age=expires_in,
-                                path='/')
+        access_token, expires_in = auth.refresh_token(refresh_token)
+        response.set_cookie('access_token',
+                            access_token,
+                            max_age=expires_in,
+                            path='/')
     else:
-            redirect('/authorize')
+        redirect('/authorize')
     tmp_username = 'emilh4xx'
     tmp_playlist = '1E6fK83UsFzMC1aomxbgm1'
     return spotify.add_songs_to_playlist(access_token,
