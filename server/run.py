@@ -6,6 +6,22 @@ from bottle import route, run, request, response, static_file, \
                    redirect, hook
 
 
+def update_access_token(request):
+    access_token = request.get_cookie('access_token')
+    refresh_token = request.get_cookie('refresh_token')
+    if access_token:
+        pass
+    elif refresh_token:
+        access_token, expires_in = auth.refresh_token(refresh_token)
+        response.set_cookie('access_token',
+                            access_token,
+                            max_age=expires_in,
+                            path='/')
+    else:
+        redirect('/authorize')
+    return access_token
+
+
 @hook('before_request')
 def strip_path():
     request.environ['PATH_INFO'] = request.environ['PATH_INFO'].rstrip('/')
@@ -44,35 +60,13 @@ def casual():
 
 @route('/me')
 def me():
-    access_token = request.get_cookie('access_token')
-    refresh_token = request.get_cookie('refresh_token')
-    if access_token:
-        pass
-    elif refresh_token:
-        access_token, expires_in = auth.refresh_token(refresh_token)
-        response.set_cookie('access_token',
-                            access_token,
-                            max_age=expires_in,
-                            path='/')
-    else:
-        redirect('/authorize')
+    access_token = update_access_token(request)
     return spotify.me(access_token)
 
 
 @route('/create-playlist')
 def create_playlist():
-    access_token = request.get_cookie('access_token')
-    refresh_token = request.get_cookie('refresh_token')
-    if access_token:
-        pass
-    elif refresh_token:
-        access_token, expires_in = auth.refresh_token(refresh_token)
-        response.set_cookie('access_token',
-                            access_token,
-                            max_age=expires_in,
-                            path='/')
-    else:
-        redirect('/authorize')
+    access_token = update_access_token(request)
     return spotify.create_playlist(access_token, 'Test playlist')
 
 
@@ -89,18 +83,7 @@ def add_songs():
     for songid in echo_object:
         songs.append(songid['song_id'])
     song_list = {"uris": songs}
-    access_token = request.get_cookie('access_token')
-    refresh_token = request.get_cookie('refresh_token')
-    if access_token:
-        pass
-    elif refresh_token:
-        access_token, expires_in = auth.refresh_token(refresh_token)
-        response.set_cookie('access_token',
-                            access_token,
-                            max_age=expires_in,
-                            path='/')
-    else:
-        redirect('/authorize')
+    access_token = update_access_token(request)
     tmp_username = 'emilh4xx'
     tmp_playlist = '1E6fK83UsFzMC1aomxbgm1'
     return spotify.add_songs_to_playlist(access_token,
