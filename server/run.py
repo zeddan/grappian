@@ -80,9 +80,10 @@ def create_playlist():
 def root():
     return static_file('index.html', root='./public')
 
-#set tmp_username and tmp_playlist to match your account details
+
 @route('/add-songs')
 def add_songs():
+    """ Set tmp_username and tmp_playlist to match your account details """
     echo_object = echonest.get_casual('rock', 'happy')
     songs = []
     for songid in echo_object:
