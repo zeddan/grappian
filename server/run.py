@@ -103,5 +103,10 @@ def add_songs():
             redirect('/authorize')
     tmp_username = 'emilh4xx'
     tmp_playlist = '1E6fK83UsFzMC1aomxbgm1'
-    return spotify.add_songs_to_playlist(access_token, tmp_username, tmp_playlist, song_list)
+    return spotify.add_songs_to_playlist(access_token,
+                                         tmp_username,
+                                         tmp_playlist,
+                                         song_list)
+
+
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
