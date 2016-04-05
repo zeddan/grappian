@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="grappian">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href="/public/static/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="script.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700|Montserrat:400,700|Work+Sans:400,500,600,700|Dosis:400,700,600,500,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div>
+        <label>Name:</label>
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <hr>
+        <h1>Hello {{yourName}}!</h1>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
+    <script src="/public/static/js/app.js"></script>
+</body>
+</html>
