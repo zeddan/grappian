@@ -27,9 +27,9 @@ def strip_path():
     request.environ['PATH_INFO'] = request.environ['PATH_INFO'].rstrip('/')
 
 
-@route('/static/<path:re:.+>')
+@route('/public/<path:re:.+>')
 def static(path):
-    return static_file(path, root='../public/static')
+    return static_file(path, root='../public')
 
 
 @route('/authorize')
