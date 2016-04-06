@@ -89,12 +89,12 @@ def add_songs():
 
 @route('/<url:re:.+>')
 def catch_all(url):
-    return static_file('index.html', root='../public/app')
+    return static_file('index.html', root='../app')
 
 
 @route('/')
 def root():
-    return static_file('index.html', root='../public/app')
+    return static_file('index.html', root='../app')
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)

@@ -9,20 +9,20 @@
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/login', {
-                templateUrl: 'components/login/loginView.html',
-                controller: 'components/login/loginController.js'
+                templateUrl: 'partials/loginView.html',
+                controller: 'LoginController'
             })
             .when('/modes', {
                 templateUrl: 'partials/modesView.html',
                 controller: 'ModesController'
             })
             .when('/review', {
-                templateUrl: 'components/review/reviewView.html',
-                controller: 'components/review/reviewController.js'
+                templateUrl: 'partials/reviewView.html',
+                controller: 'ReviewController'
             })
             .when('/result', {
-                templateUrl: 'components/result/resultView.html',
-                controller: 'components/result/resultController.js'
+                templateUrl: 'partials/resultView.html',
+                controller: 'ResultController'
             })
     }]);
 
