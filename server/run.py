@@ -48,7 +48,7 @@ def authorize_callback():
                         data['refresh_token'],
                         expires=time()*2,
                         path='/')
-    redirect('/me')
+    redirect('http://localhost:8000/#/modes')
 
 
 @route('/api/casual')
