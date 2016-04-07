@@ -1,4 +1,5 @@
 import authorize as auth
+import json
 import spotify
 import echonest
 from time import time
@@ -55,7 +56,7 @@ def authorize_callback():
 def casual():
     genre = request.query.genre
     mood = request.query.mood
-    return echonest.get_casual(genre, mood)
+    return json.dumps(echonest.get_casual(genre, mood))
 
 
 @route('/me')
