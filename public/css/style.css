@@ -1,3 +1,10 @@
+@import url('modes.css');
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body{
     background-color: #0CBF9D;	
 }

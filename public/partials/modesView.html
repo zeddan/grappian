@@ -1,5 +1,32 @@
-<div class="container" ng-controller="ModesController">
-    <div ng-repeat="mode in modes">
-        <div>{{ mode }}</div>
+<div ng-controller="ModesController">
+    <div class="container">
+        <div class="row center">
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <div class="modes-h1">{{ titles.modes }}</div>
+                <div class="" ng-repeat="mode in modes">
+                    <div>{{ mode }}</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-10">
+                <div class="modes-h1">{{ titles.preferences }}</div>
+                <div class="modes-h2">{{ titles.casual.genre }}</div>
+                <div class="casual-genre-value"
+                     ng-click="selectGenre($index)"
+                     ng-repeat="genre in preferences.casual.genres">
+                    {{ genre }}  
+                </div>
+                <div class="modes-h2">{{ titles.casual.mood }}</div>
+                <div class="casual-mood-value" 
+                     ng-click="selectMood($index)"
+                     ng-repeat="mood in preferences.casual.moods">
+                    {{ mood }}  
+                </div>
+            </div>
+        </div>
     </div>
+    <footer class="footer" ng-click="submit()">
+        <div class="container">
+            <div class="footer-content">GO</div>
+        </div>
+    </footer>
 </div>

@@ -1,0 +1,45 @@
+/*
+@font-face {
+    font-family: "Gotham Boldz";
+    src: url('http://robinsaaf.se/public/fonts/gotham-bold.ttf');
+}
+
+.abc {
+    font-family: "Gotham Boldz";
+}
+*/
+
+body {
+    margin-bottom: 60px;
+}
+
+.modes-h1 {
+    color: #fff200;
+}
+
+.modes-h2 {
+    color: #fafafa;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	background-color: #fff200;
+	cursor: pointer;
+}
+
+.footer-content {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0.75em;
+}
+
+.casual-genre-value {
+    cursor: pointer;
+}
+
+.casual-mood-value {
+    cursor: pointer;
+}
