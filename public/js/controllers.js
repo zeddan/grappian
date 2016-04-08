@@ -27,6 +27,9 @@
             'mode': '',
             'params': {}
         };
+        $scope.selectMode = function(index) {
+            $scope.selected.mode = $scope.modes[index];
+        }
         $scope.selectGenre = function(index) {
             $scope.selected.params.genre = $scope.preferences.casual.genres[index];
         };
