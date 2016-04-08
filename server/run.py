@@ -28,6 +28,11 @@ def strip_path():
     request.environ['PATH_INFO'] = request.environ['PATH_INFO'].rstrip('/')
 
 
+@hook('after_request')
+def enable_cors():
+    response.headers['Access-Control-Allow-Origin'] = '*'
+
+
 @route('/public/<path:re:.+>')
 def static(path):
     return static_file(path, root='../public')

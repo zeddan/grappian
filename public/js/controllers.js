@@ -3,7 +3,7 @@
 
     var app = angular.module('controllers', []);
 
-    app.controller('ModesController', ['$scope', function($scope) {
+    app.controller('ModesController', ['$scope', '$http', function($scope, $http) {
         $scope.titles = {
             'modes': 'modes',
             'preferences': 'preferences',
@@ -34,7 +34,21 @@
             $scope.selected.params.mood = $scope.preferences.casual.moods[index];
         };
         $scope.submit = function() {
-            console.log($scope.selected.params);
+            var genre = $scope.selected.params.genre;
+            var mood = $scope.selected.params.mood;
+            var req = {
+                method: 'GET',
+                url: 'http://localhost:8080/api/casual',
+                params: {genre: genre, mood: mood}
+            };
+            $http(req).then(
+                function(data){
+                    console.log(data);
+                }, 
+                function(error){
+                    console.log(error);
+                }
+            );
         };
     }]);
 
