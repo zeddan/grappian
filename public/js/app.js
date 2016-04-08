@@ -3,7 +3,8 @@
 
     var app = angular.module('grappian', [
         'ngRoute',
-        'controllers'
+        'controllers',
+        'services'
     ]);
 
     app.config(['$routeProvider', function($routeProvider) {
@@ -14,7 +15,7 @@
             })
             .when('/modes', {
                 templateUrl: 'partials/modesView.html',
-                controller: 'ModesController'
+                controller: 'ModesController',
             })
             .when('/review', {
                 templateUrl: 'partials/reviewView.html',
