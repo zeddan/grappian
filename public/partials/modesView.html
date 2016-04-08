@@ -1,12 +1,21 @@
 <div ng-controller="ModesController">
     <div class="container main-content">
         <div class="row center">
+
+            <!-- modes -->
             <div class="col-xs-12 col-sm-6 col-md-2">
                 <div class="modes-h1">{{ titles.modes }}</div>
                 <div ng-repeat="mode in modes">
-                    <div class="modes-h3" >{{ mode }}</div>
+                    <div class="modes-h3"
+                         ng-model="mode"
+                         ng-class="{'modes-selected': selected.mode == mode}"
+                         ng-click="selectMode($index)">
+                        {{ mode }}
+                    </div>
                 </div>
             </div>
+
+            <!-- preferences -->
             <div class="col-xs-12 col-sm-6 col-md-10">
                 <div class="modes-h1">{{ titles.preferences }}</div>
                 <div class="modes-h2">{{ titles.casual.genre }}</div>

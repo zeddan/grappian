@@ -22,8 +22,13 @@ body {
     padding: 0.5em 0;
     font-size: 1.5em;
     cursor: pointer;
+    color: rgba(250, 250, 250, 0.3);
     display: -webkit-inline-box;
     display: -moz-inline-box;
+}
+
+.modes-selected {
+    color: #fafafa;
 }
 
 .casual-value {
