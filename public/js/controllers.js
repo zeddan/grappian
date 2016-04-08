@@ -4,6 +4,9 @@
     var app = angular.module('controllers', []);
 
     app.controller('ModesController', ['$scope', '$http', function($scope, $http) {
+        $http.get('json/genres.json').success(function(data) {
+            $scope.preferences.casual.genres = data[0];
+        });
         $scope.titles = {
             'modes': 'modes',
             'preferences': 'preferences',
@@ -15,7 +18,6 @@
         $scope.modes = ['casual', 'theme', 'expert'];
         $scope.preferences = {
             'casual': {
-                'genres': ['dub acid', 'jazz'],
                 'moods': ['happy', 'angry']
             },
             'theme': {
@@ -53,6 +55,7 @@
                 }
             );
         };
+        $scope.selected.mode = $scope.modes[0];
     }]);
 
 }());

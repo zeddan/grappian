@@ -15,7 +15,17 @@ body {
 }
 
 .modes-h2 {
-    color: #fafafa;
+    transition: all 0.1s ease;
+    padding: 0.5em 0;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: rgba(250, 250, 250, 0.3);
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+}
+
+.modes-h2:hover {
+    color: rgba(250, 250, 250, 0.75);
 }
 
 .modes-h3 {
@@ -27,17 +37,53 @@ body {
     display: -moz-inline-box;
 }
 
-.modes-selected {
+.modes-active {
     color: #fafafa;
 }
 
-.casual-value {
-    cursor: pointer;
+.modes-active:hover {
+    color: #fafafa;
+}
+
+.preferences-h2 {
+    color: #fafafa;
+    text-align: left;
     display: -webkit-inline-box;
     display: -moz-inline-box;
 }
 
+.pref-active {
+    color: #fafafa;
+}
+
+.pref-active:hover {
+    color: #fafafa;
+}
+
+.pref-inactive {
+    color: rgba(250, 250, 250, 0.3);
+}
+
+.pref-inactive:hover {
+    color: rgba(250, 250, 250, 0.75);
+}
+
+.pref-default {
+    color: #696969;
+}
+
+.pref-default:hover {
+    color: rgba(250, 250, 250, 0.75);
+}
+
+.casual-value {
+    transition: all 0.1s ease;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
 .footer {
+    transition: all 0.1s ease;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
