@@ -67,24 +67,23 @@ def me():
 @route('/create-playlist')
 def create_playlist():
     access_token = update_access_token(request)
-    return spotify.create_playlist(access_token, 'Test playlist')
+    playlistname = request.query.playlistname
+    return spotify.create_playlist(access_token, playlistname)
 
 
 @route('/add-songs')
 def add_songs():
-    """Set tmp_username and tmp_playlist to match your account details"""
     echo_object = echonest.get_casual('rock', 'happy')
     songs = []
+    artist = []
     for songid in echo_object:
         songs.append(songid['song_id'])
     song_list = {"uris": songs}
+    for artistid in echo_object:
+        artist.append(artistid['artist_id'])
+    spotify.show_image(artist)
     access_token = update_access_token(request)
-    tmp_username = 'emilh4xx'
-    tmp_playlist = '1E6fK83UsFzMC1aomxbgm1'
-    return spotify.add_songs_to_playlist(access_token,
-                                         tmp_username,
-                                         tmp_playlist,
-                                         song_list)
+    return spotify.add_songs_to_playlist(access_token, song_list)
 
 
 @route('/<url:re:.+>')
@@ -95,6 +94,4 @@ def catch_all(url):
 @route('/')
 def root():
     return static_file('index.html', root='../public/app')
-
-
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
