@@ -3,9 +3,15 @@
 
     var app = angular.module('controllers', []);
 
-    app.controller('ModesController', ['$scope', '$http', function($scope, $http) {
-        $http.get('json/genres.json').success(function(data) {
-            $scope.preferences.casual.genres = data[0];
+    app.controller('ModesController', [
+    '$scope',
+    '$http',
+    'echonestService',
+    'playlistId',
+    function($scope, $http, echonestService, playlistId) {
+        $http.get('json/casual.json').success(function(data) {
+            $scope.preferences.casual.genres = data.genres;
+            $scope.preferences.casual.moods = data.moods;
         });
         $scope.titles = {
             'modes': 'modes',
@@ -17,13 +23,9 @@
         };
         $scope.modes = ['casual', 'theme', 'expert'];
         $scope.preferences = {
-            'casual': {
-                'moods': ['happy', 'angry']
-            },
-            'theme': {
-            },
-            'expert': {
-            }
+            'casual': {},
+            'theme': {},
+            'expert': {}
         };
         $scope.selected = {
             'mode': '',
@@ -46,14 +48,7 @@
                 url: 'http://localhost:8080/api/casual',
                 params: {genre: genre, mood: mood}
             };
-            $http(req).then(
-                function(data){
-                    console.log(data);
-                }, 
-                function(error){
-                    console.log(error);
-                }
-            );
+            echonestService.getSongs(req);
         };
         $scope.selected.mode = $scope.modes[0];
     }]);
