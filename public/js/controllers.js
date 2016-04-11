@@ -6,9 +6,10 @@
     app.controller('ModesController', [
     '$scope',
     '$http',
+    '$location',
     'echonestService',
     'playlistId',
-    function($scope, $http, echonestService, playlistId) {
+    function($scope, $http, $location, echonestService, playlistId) {
         $http.get('json/casual.json').success(function(data) {
             $scope.preferences.casual.genres = data.genres;
             $scope.preferences.casual.moods = data.moods;
@@ -49,8 +50,15 @@
                 params: {genre: genre, mood: mood}
             };
             echonestService.getSongs(req);
+            $location.path('/result');
         };
         $scope.selected.mode = $scope.modes[0];
+    }]);
+
+    app.controller('ResultController', [
+    '$scope',
+    'echonestService',
+    function($scope, echonestService) {
     }]);
 
 }());

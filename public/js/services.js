@@ -3,13 +3,13 @@
 
     var app = angular.module('services', []);
 
-    app.factory('echonestService', ['$http', function($http) {
+    app.factory('echonestService', ['$http', '$rootScope', function($http, $rootScope) {
         var service = {};
         service.songs = {};
         service.getSongs = function(req) {
             $http(req).then(
                 function(data){
-                    service.songs = data;
+                    $rootScope.songs = data;
                 });
         };
         return service;
