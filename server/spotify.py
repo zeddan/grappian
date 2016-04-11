@@ -10,23 +10,26 @@ def me(access_token):
     return data
 
 
-def create_playlist(access_token, playlist_name, username):
-    url = '%s/users/%s/playlists' % (base_url, username)
+def create_playlist(access_token, user_id, playlist_name):
+    url = '%s/users/%s/playlists' % (base_url, user_id)
     headers = {'Authorization': 'Bearer %s' % access_token,
                'Content-Type': 'application/json'}
     params = {'name': playlist_name}
     request_data = requests.post(url,
                                  headers=headers,
                                  data=json.dumps(params)).json()
-    return request_data
+    playlist_id = request_data['id']
+    playlist_link = request_data['external_urls']['spotify']
+    return playlist_id, playlist_link
 
 
-def add_songs_to_playlist(access_token, user_id, playlist_id, track_list):
+def add_tracks(access_token, user_id, playlist_id, tracks):
     url = '%s/users/%s/playlists/%s/tracks' % (base_url,
                                                user_id,
                                                playlist_id)
     headers = {'Authorization': 'Bearer %s' % access_token,
                'Content-Type': 'application/json'}
-    return requests.post(url,
-                         headers=headers,
-                         data=json.dumps(track_list)).json()
+    status_code = requests.post(url,
+                                headers=headers,
+                                data=json.dumps(tracks)).status_code
+    return status_code

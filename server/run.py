@@ -4,7 +4,7 @@ import spotify
 import echonest
 from time import time
 from bottle import route, run, request, response, static_file, \
-                   redirect, hook
+                   redirect, hook, abort
 
 
 def update_access_token(request):
@@ -35,7 +35,7 @@ def enable_cors():
 
 @route('/public/<path:re:.+>')
 def static(path):
-    return static_file(path, root='../public')
+    return static_file(path, root='./public')
 
 
 @route('/authorize')
@@ -70,26 +70,20 @@ def me():
     return spotify.me(access_token)
 
 
-@route('/create-playlist')
+@route('/api/create-playlist', method="POST")
 def create_playlist():
+    if request.headers.get('Content-Type') != "application/json":
+        abort(400, "Bad request")
+    user_id = requests.params.get("user_id")
+    p_name = requests.params.get("name")
+    tracks = requests.params.get("tracks")
     access_token = update_access_token(request)
-    playlistname = request.query.playlistname
-    return json.dumps(spotify.create_playlist(access_token, playlistname))
-
-
-@route('/add-songs')
-def add_songs():
-    echo_object = echonest.get_casual('rock', 'happy')
-    songs = []
-    artist = []
-    for songid in echo_object:
-        songs.append(songid['song_id'])
-    song_list = {"uris": songs}
-    for artistid in echo_object:
-        artist.append(artistid['artist_id'])
-    spotify.show_image(artist)
-    access_token = update_access_token(request)
-    return spotify.add_songs_to_playlist(access_token, song_list)
+    p_id, p_link = spotify.create_playlist(access_token, user_id, p_name)
+    status_code = spotify.add_tracks(access_token, user_id, p_id, tracks)
+    if status_code == 201:
+        return playlist_link
+    elif status_code == 403:
+        abort(403, "Unauthorized")
 
 
 @route('/<url:re:.+>')
