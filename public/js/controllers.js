@@ -49,7 +49,7 @@
                 url: 'http://localhost:8080/api/casual',
                 params: {genre: genre, mood: mood}
             };
-            echonestService.getSongs(req);
+            echonestService.createPlaylist(req);
             $location.path('/result');
         };
         $scope.selected.mode = $scope.modes[0];
