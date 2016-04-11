@@ -1,0 +1,66 @@
+<div ng-controller="ModesController">
+    <div class="container main-content">
+        <div class="row center">
+
+            <!-- modes -->
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <div class="modes-h1">{{ titles.modes }}</div>
+                <div ng-repeat="mode in modes">
+                    <div class="modes-h2"
+                         ng-model="mode"
+                         ng-class="{'modes-active': selected.mode == mode}"
+                         ng-click="selectMode($index)">
+                        {{ mode }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- preferences -->
+            <div class="col-xs-12 col-sm-6 col-md-10">
+                <div class="modes-h1">{{ titles.preferences }}</div>
+                <div class="modes-h2 preferences-h2">{{ titles.casual.genre }}</div>
+                <div class="row">
+                    <div ng-repeat="genre in preferences.casual.genres">
+                        <div class="casual-value col-xs-12 col-sm-6 col-md-4"
+                             ng-model="genre"
+                             ng-init="selected.params.genre=''"
+                             ng-class="{
+                                'pref-active': selected.params.genre==genre,
+                                'pref-inactive': selected.params.genre!=genre &amp;&amp; 
+                                                 selected.params.genre!='',
+                                'pref-default': selected.params.genre==''
+                             }"
+                             ng-click="selectGenre($index)">
+                            {{ genre }}  
+                        </div>
+                    </div>
+                </div>
+                <div class="modes-h2 preferences-h2">{{ titles.casual.mood }}</div>
+                <div class="row">
+                    <div ng-repeat="mood in preferences.casual.moods">
+                        <div class="casual-value col-xs-12 col-sm-6 col-md-4"
+                             ng-model="mood"
+                             ng-init="selected.params.mood=''"
+                             ng-class="{
+                                'pref-active': selected.params.mood==mood,
+                                'pref-inactive': selected.params.mood!=mood &amp;&amp;
+                                                 selected.params.mood!='',
+                                'pref-default': selected.params.mood==''
+                             }"
+                             ng-click="selectMood($index)">
+                            {{ mood }}  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer" ng-click="submit()">
+        <div class="container">
+            <div class="footer-content">
+                GO
+                <div class="glyphicon glyphicon-play footer-content-icon" aria-hidden="true"></div>
+            </div>
+        </div>
+    </footer>
+</div>

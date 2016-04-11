@@ -1,26 +1,49 @@
 import requests
 import json
+base_url = 'https://api.spotify.com/v1'
+username = ''
+playlist = ''
 
 
 def me(access_token):
-    url = 'https://api.spotify.com/v1/me'
+    url = '%s/me' % base_url
     headers = {'Authorization': 'Bearer %s' % access_token}
-    return requests.get(url, headers=headers).json()
+    data = requests.get(url, headers=headers).json()
+    global username
+    username = data['id']
+    return data
 
 
 def create_playlist(access_token, name):
-    """Change what is in the brackets to fit your account"""
-    url = 'https://api.spotify.com/v1/users/emilh4xx/playlists'
+    url = '%s/users/%s/playlists' % (base_url, username)
     headers = {'Authorization': 'Bearer %s' % access_token,
                'Content-Type': 'application/json'}
     params = {'name': name}
-    return requests.post(url, headers=headers, data=json.dumps(params)).json()
+    request_data = requests.post(url,
+                                 headers=headers,
+                                 data=json.dumps(params)).json()
+    global playlist
+    playlist = request_data['id']
+    return request_data
 
 
 def add_songs_to_playlist(access_token, user_id, playlist_id, track_list):
-    """Fix what is in the brackets to fit your account and playlist"""
-    base_url = 'https://api.spotify.com/v1/users'
-    purpose_url = '/%s/playlists/%s/tracks' % (user_id, playlist_id)
+    url = '%s/users/%s/playlists/%s/tracks' % (base_url,
+                                               username,
+                                               playlist)
     headers = {'Authorization': 'Bearer %s' % access_token,
                'Content-Type': 'application/json'}
-    return requests.post(base_url + purpose_url, headers=headers, data=json.dumps(track_list)).json()
+    return requests.post(url,
+                         headers=headers,
+                         data=json.dumps(track_list)).json()
+
+
+def show_image(artist_id):
+    print artist_id
+    artist = ''
+    for artistid in artist_id:
+        artist = artistid['spotify']['artist']
+    print artist
+    url = '%s/artists/%s' % (base_url, artist)
+    request_data = requests.get(url)
+    print request_data['images']['url']

@@ -1,4 +1,5 @@
 import authorize as auth
+import json
 import spotify
 import echonest
 from time import time
@@ -27,9 +28,14 @@ def strip_path():
     request.environ['PATH_INFO'] = request.environ['PATH_INFO'].rstrip('/')
 
 
-@route('/static/<path:re:.+>')
+@hook('after_request')
+def enable_cors():
+    response.headers['Access-Control-Allow-Origin'] = '*'
+
+
+@route('/public/<path:re:.+>')
 def static(path):
-    return static_file(path, root='../public/static')
+    return static_file(path, root='../public')
 
 
 @route('/authorize')
@@ -48,14 +54,14 @@ def authorize_callback():
                         data['refresh_token'],
                         expires=time()*2,
                         path='/')
-    redirect('/me')
+    redirect('http://localhost:8000/#/modes')
 
 
 @route('/api/casual')
 def casual():
     genre = request.query.genre
     mood = request.query.mood
-    return echonest.get_casual(genre, mood)
+    return json.dumps(echonest.get_casual(genre, mood))
 
 
 @route('/me')
@@ -68,7 +74,7 @@ def me():
 def create_playlist():
     access_token = update_access_token(request)
     playlistname = request.query.playlistname
-    return spotify.create_playlist(access_token, playlistname)
+    return json.dumps(spotify.create_playlist(access_token, playlistname))
 
 
 @route('/add-songs')
@@ -88,10 +94,12 @@ def add_songs():
 
 @route('/<url:re:.+>')
 def catch_all(url):
-    return static_file('index.html', root='../public/app')
+    return static_file('index.html', root='../app')
 
 
 @route('/')
 def root():
-    return static_file('index.html', root='../public/app')
+    return static_file('index.html', root='../app')
+
+
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
