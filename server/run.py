@@ -35,7 +35,7 @@ def enable_cors():
 
 @route('/public/<path:re:.+>')
 def static(path):
-    return static_file(path, root='./public')
+    return static_file(path, root='../public')
 
 
 @route('/authorize')
