@@ -36,9 +36,9 @@ def add_tracks(access_token, user_id, playlist_id, tracks):
     return status_code
 
 
-def get_recommendations(genre, target):
+def get_recommendations(access_token, genre, target):
             url = '%s/recommendations' % (base_url)
-            headers = {'Authorization': 'Bearer BQCulDQt416BX2Cgj30JivGJ5MaHWgPj0FfXj_4zpcozy2MxnWaoCIP9kMAaxkNIIA-Ly_QaUMkwC1aEaJSi7tND16PtZ1BJeAeJ6qCJuux3lyzYUfzvRiH7WHahT0Jzqlr_NnCQRM4EQw1JOUs'}
+            headers = {'Authorization': 'Bearer %s' % access_token}
             params = {'seed_genres': genre,
                       'target': target}
             return requests.get(url, headers=headers, params=params).json()
