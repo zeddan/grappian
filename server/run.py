@@ -33,8 +33,7 @@ def strip_path():
 @hook('after_request')
 def enable_cors():
     response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
 
 @route('/public/<path:re:.+>')
 def static(path):
@@ -60,13 +59,19 @@ def authorize_callback():
     redirect('http://localhost:8000/#/modes')
 
 
+@route('/api/casual')
+def casual():
+    genre = request.query.genre
+    mood = request.query.mood
+    return json.dumps(echonest.get_casual(genre, mood))
+
+
 @route('/api/get_recommendations')
 def get_recommendations():
     genre = request.query.genre
     target = request.query.target
     access_token = update_access_token(request)
-#    mood = request.query.mood
-#    return json.dumps(echonest.get_casual(genre, mood))
+
     return spotify.get_recommendations(access_token, genre, target)
 
 

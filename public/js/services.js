@@ -10,7 +10,7 @@
                 function(res) {
                     var tracks = [];
                     res.data.forEach(function(e) {
-                        tracks.push(e.song_id); 
+                        tracks.push(e.song_id);
                     });
                     $rootScope.tracks = tracks;
                     callback(tracks);
@@ -28,15 +28,16 @@
                 }
             };
             service.getTracks(req, function(tracks){
-                o.params.tracks = tracks; 
-            }); 
-            $http(o).then(
-                function(res) {
-                    // playlist should have been created
-                    // and res is the server's response
-                    console.log(res);
-                }
-            );
+                o.params.tracks = tracks;
+                $http(o).then(
+                    function(res) {
+                        // playlist should have been created
+                        // and res is the server's response
+                        console.log(res);
+                    }
+                );
+            });
+
         };
         return service;
     }]);
