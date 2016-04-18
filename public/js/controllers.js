@@ -54,6 +54,8 @@
         $scope.selected.mode = $scope.modes[0];
     }]);
 
+    app.controller('LoginController', [function() {}]);
+
     app.controller('ResultController', [
     '$scope',
     'echonestService',
