@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 import authorize as auth
 import json
 import spotify
 import echonest
 from time import time
+from datetime import date
 from bottle import route, run, request, response, static_file, \
                    redirect, hook, abort
 
@@ -74,6 +76,20 @@ def casual():
     return json.dumps(echonest.get_casual(genre, mood))
 
 
+@route('/api/getrecommendations')
+def get_recommendations():
+    genre = request.query.genre
+    target = request.query.target
+    access_token = update_access_token(request)
+    return spotify.get_recommendations(access_token, genre, target)
+
+
+@route('/api/getimages')
+def get_artist_image():
+    ids = request.query.artistid
+    return spotify.get_artist_image(ids)
+
+
 @route('/me')
 def me():
     access_token = update_access_token(request)
@@ -94,7 +110,7 @@ def create_playlist():
         return json.dumps(p_link)
     elif status_code == 403:
         abort(403, "Unauthorized")
-    return "lalallalalaa" 
+    return "neither 201 nor 403... hmmmm...." 
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)

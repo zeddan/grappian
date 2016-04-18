@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import json
 base_url = 'https://api.spotify.com/v1'
@@ -33,3 +34,17 @@ def add_tracks(access_token, user_id, playlist_id, tracks):
                                 headers=headers,
                                 data=json.dumps(tracks)).status_code
     return status_code
+
+
+def get_recommendations(access_token, genre, target):
+            url = '%s/recommendations' % (base_url)
+            headers = {'Authorization': 'Bearer %s' % access_token}
+            params = {'seed_genres': genre,
+                      'target': target}
+            return requests.get(url, headers=headers, params=params).json()
+
+
+def get_artist_image(artist_id):
+    url = '%s/artists' % (base_url)
+    params = {'ids': artist_id}
+    return requests.get(url, params=params).json()

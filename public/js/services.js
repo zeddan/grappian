@@ -14,7 +14,7 @@
                 function(res) {
                     var tracks = [];
                     res.data.forEach(function(e) {
-                        tracks.push(e.song_id); 
+                        tracks.push(e.song_id);
                     });
                     $rootScope.tracks = tracks;
                     callback(tracks);
