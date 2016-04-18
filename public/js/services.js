@@ -24,7 +24,7 @@
         service.createPlaylist = function(req) {
             var url = 'http://127.0.0.1:8080/api/create-playlist';
             var data = {
-                'user_id': 'zdn',
+                'user_id': 'emilh4xx',
                 'name': 'lala',
                 'tracks': [],
                 'access_token': $cookies.get('access_token'),
@@ -41,7 +41,7 @@
                         console.log("error: ", err);
                     }
                 );
-            }); 
+            });
         };
         return service;
     }]);

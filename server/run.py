@@ -32,7 +32,7 @@ def strip_path():
 
 @hook('after_request')
 def after_req():
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
@@ -41,7 +41,7 @@ def after_req():
 
 @route('/<:re:.*>', method='OPTIONS')
 def enableCORSGenericRoute():
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
@@ -65,8 +65,8 @@ def authorize_callback():
                         data['refresh_token'],
                         expires=time()*2,
                         domain='localhost',
-                        path='/')                        
-    redirect('http://localhost/#/modes')
+                        path='/')
+    redirect('http://localhost:8000/#/modes')
 
 
 @route('/api/casual')
@@ -110,7 +110,7 @@ def create_playlist():
         return json.dumps(p_link)
     elif status_code == 403:
         abort(403, "Unauthorized")
-    return "neither 201 nor 403... hmmmm...." 
+    return "neither 201 nor 403... hmmmm...."
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
