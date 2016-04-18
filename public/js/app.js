@@ -3,6 +3,7 @@
 
     var app = angular.module('grappian', [
         'ngRoute',
+        'ngCookies',
         'controllers',
         'services'
     ]);

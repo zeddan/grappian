@@ -8,8 +8,7 @@
     '$http',
     '$location',
     'echonestService',
-    'playlistId',
-    function($scope, $http, $location, echonestService, playlistId) {
+    function($scope, $http, $location, echonestService) {
         $http.get('json/casual.json').success(function(data) {
             $scope.preferences.casual.genres = data.genres;
             $scope.preferences.casual.moods = data.moods;
@@ -46,7 +45,7 @@
             var mood = $scope.selected.params.mood;
             var req = {
                 method: 'GET',
-                url: 'http://localhost:8080/api/casual',
+                url: 'http://127.0.0.1:8080/api/casual',
                 params: {genre: genre, mood: mood}
             };
             echonestService.createPlaylist(req);

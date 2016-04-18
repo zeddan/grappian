@@ -3,7 +3,11 @@
 
     var app = angular.module('services', []);
 
-    app.factory('echonestService', ['$http', '$rootScope', function($http, $rootScope) {
+    app.factory('echonestService', [
+    '$http',
+    '$rootScope',
+    '$cookies',
+    function($http, $rootScope, $cookies) {
         var service = {};
         service.getTracks = function(req, callback) {
             $http(req).then(
@@ -18,25 +22,26 @@
             );
         };
         service.createPlaylist = function(req) {
-            var o = {
-                method: 'POST',
-                url: 'http://localhost:8080/api/create-playlist',
-                params: {
-                    'user_id': 'grappian',
-                    'name': '' + new Date(),
-                    'tracks': []
-                }
+            var url = 'http://127.0.0.1:8080/api/create-playlist';
+            var data = {
+                'user_id': 'zdn',
+                'name': 'lala',
+                'tracks': [],
+                'access_token': $cookies.get('access_token'),
+                'refresh_token': $cookies.get('refresh_token')
             };
             service.getTracks(req, function(tracks){
-                o.params.tracks = tracks; 
+                data.tracks = tracks;
+                $http.post(url, JSON.stringify(data)).then(
+                    function(res) {
+                        console.log("lasldadas");
+                        console.log(res);
+                    },
+                    function(err) {
+                        console.log("error: ", err);
+                    }
+                );
             }); 
-            $http(o).then(
-                function(res) {
-                    // playlist should have been created
-                    // and res is the server's response
-                    console.log(res);
-                }
-            );
         };
         return service;
     }]);

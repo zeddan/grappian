@@ -8,18 +8,18 @@ from bottle import route, run, request, response, static_file, \
 
 
 def update_access_token(request):
-    access_token = request.get_cookie('access_token')
-    refresh_token = request.get_cookie('refresh_token')
+    access_token = request.json.get('access_token')
+    refresh_token = request.json.get('refresh_token')
     if access_token:
         pass
     elif refresh_token:
         access_token, expires_in = auth.refresh_token(refresh_token)
         response.set_cookie('access_token',
-                            access_token,
-                            max_age=expires_in,
-                            path='/')
+                access_token,
+                max_age=expires_in,
+                path='/')
     else:
-        redirect('/authorize')
+        redirect('http://127.0.0.1:8080/authorize')
     return access_token
 
 
@@ -29,13 +29,21 @@ def strip_path():
 
 
 @hook('after_request')
-def enable_cors():
-    response.headers['Access-Control-Allow-Origin'] = '*'
+def after_req():
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Vary'] = 'Accept-Encoding, Origin'
 
 
-@route('/public/<path:re:.+>')
-def static(path):
-    return static_file(path, root='../public')
+@route('/<:re:.*>', method='OPTIONS')
+def enableCORSGenericRoute():
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost'
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Vary'] = 'Accept-Encoding, Origin'
 
 
 @route('/authorize')
@@ -49,12 +57,14 @@ def authorize_callback():
     response.set_cookie('access_token',
                         data['access_token'],
                         max_age=data['expires_in'],
+                        domain='localhost',
                         path='/')
     response.set_cookie('refresh_token',
                         data['refresh_token'],
                         expires=time()*2,
-                        path='/')
-    redirect('http://localhost:8000/#/modes')
+                        domain='localhost',
+                        path='/')                        
+    redirect('http://localhost/#/modes')
 
 
 @route('/api/casual')
@@ -70,30 +80,21 @@ def me():
     return spotify.me(access_token)
 
 
-@route('/api/create-playlist', method="POST")
+@route('/api/create-playlist', method='POST')
 def create_playlist():
-    if request.headers.get('Content-Type') != "application/json":
-        abort(400, "Bad request")
-    user_id = requests.params.get("user_id")
-    p_name = requests.params.get("name")
-    tracks = requests.params.get("tracks")
+    # if request.headers.get('Content-Type') != "application/json":
+    #     abort(400, "Bad request")
+    user_id = request.json.get('user_id')
+    p_name = request.json.get('name')
+    tracks = request.json.get('tracks')
     access_token = update_access_token(request)
     p_id, p_link = spotify.create_playlist(access_token, user_id, p_name)
     status_code = spotify.add_tracks(access_token, user_id, p_id, tracks)
     if status_code == 201:
-        return playlist_link
+        return json.dumps(p_link)
     elif status_code == 403:
         abort(403, "Unauthorized")
-
-
-@route('/<url:re:.+>')
-def catch_all(url):
-    return static_file('index.html', root='../app')
-
-
-@route('/')
-def root():
-    return static_file('index.html', root='../app')
+    return "lalallalalaa" 
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)
