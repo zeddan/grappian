@@ -17,9 +17,9 @@ def update_access_token(request):
     elif refresh_token:
         access_token, expires_in = auth.refresh_token(refresh_token)
         response.set_cookie('access_token',
-                access_token,
-                max_age=expires_in,
-                path='/')
+                            access_token,
+                            max_age=expires_in,
+                            path='/')
     else:
         redirect('http://127.0.0.1:8080/authorize')
     return access_token
@@ -107,7 +107,7 @@ def create_playlist():
     p_id, p_link = spotify.create_playlist(access_token, user_id, p_name)
     status_code = spotify.add_tracks(access_token, user_id, p_id, tracks)
     if status_code == 201:
-        return json.dumps(p_link)
+        return p_link
     elif status_code == 403:
         abort(403, "Unauthorized")
     return "neither 201 nor 403... hmmmm...."

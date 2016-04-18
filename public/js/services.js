@@ -34,8 +34,8 @@
                 data.tracks = tracks;
                 $http.post(url, JSON.stringify(data)).then(
                     function(res) {
-                        console.log("lasldadas");
-                        console.log(res);
+                        $rootScope.playlistLink = res.data;
+                        console.log($rootScope.playlistLink);
                     },
                     function(err) {
                         console.log("error: ", err);
@@ -45,9 +45,4 @@
         };
         return service;
     }]);
-
-    app.factory('playlistId', function() {
-        return {playlistId: ''};
-    });
-
 }());
