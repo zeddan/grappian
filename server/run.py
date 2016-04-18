@@ -6,6 +6,7 @@ from time import time
 from bottle import route, run, request, response, static_file, \
                    redirect, hook, abort
 
+# :)
 
 def update_access_token(request):
     access_token = request.get_cookie('access_token')
