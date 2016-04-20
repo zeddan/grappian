@@ -8,11 +8,10 @@ from datetime import date
 from bottle import route, run, request, response, static_file, \
                    redirect, hook, abort
 
-# :)
 
 def update_access_token(request):
-    access_token = request.get_cookie('access_token')
-    refresh_token = request.get_cookie('refresh_token')
+    access_token = request.json.get('access_token')
+    refresh_token = request.json.get('refresh_token')
     if access_token:
         pass
     elif refresh_token:
@@ -22,7 +21,7 @@ def update_access_token(request):
                             max_age=expires_in,
                             path='/')
     else:
-        redirect('/authorize')
+        redirect('http://127.0.0.1:8080/authorize')
     return access_token
 
 
@@ -32,13 +31,27 @@ def strip_path():
 
 
 @hook('after_request')
-def enable_cors():
-    response.headers['Access-Control-Allow-Origin'] = '*'
+def after_req():
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Vary'] = 'Accept-Encoding, Origin'
 
 
+<<<<<<< HEAD
 @route('/public/<path:re:.+>')
 def static(path):
     return static_file(path, root='../public')
+=======
+@route('/<:re:.*>', method='OPTIONS')
+def enableCORSGenericRoute():
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Vary'] = 'Accept-Encoding, Origin'
+>>>>>>> a58e33213032b69071a6c0504648112abc180517
 
 
 @route('/authorize')
@@ -52,10 +65,12 @@ def authorize_callback():
     response.set_cookie('access_token',
                         data['access_token'],
                         max_age=data['expires_in'],
+                        domain='localhost',
                         path='/')
     response.set_cookie('refresh_token',
                         data['refresh_token'],
                         expires=time()*2,
+                        domain='localhost',
                         path='/')
     redirect('http://localhost:8000/#/modes')
 
@@ -67,12 +82,11 @@ def casual():
     return json.dumps(echonest.get_casual(genre, mood))
 
 
-@route('/api/get_recommendations')
+@route('/api/getrecommendations')
 def get_recommendations():
     genre = request.query.genre
     target = request.query.target
     access_token = update_access_token(request)
-
     return spotify.get_recommendations(access_token, genre, target)
 
 
@@ -88,55 +102,21 @@ def me():
     return spotify.me(access_token)
 
 
-@route('/api/create-playlist', method="GET")
+@route('/api/create-playlist', method='POST')
 def create_playlist():
-    '''
-    if request.headers.get('Content-Type') != "application/json":
-        abort(400, "Bad request")
-        '''
-    if request.method == 'GET':
-        user_id = request.params.get("user_id")
-        p_name = request.params.get("name")
-        tracks = request.params.get("tracks")
-        access_token = update_access_token(request)
-        p_id, p_link = spotify.create_playlist(access_token, user_id, p_name)
-        status_code = spotify.add_tracks(access_token, user_id, p_id, tracks)
-    '''
-    if status_code == 201:
-        return playlist_link
-    elif status_code == 403:
-        abort(403, "Unauthorized")
-    '''
-    return p_link
-
-
-@route('/api/test-create')
-def test_create():
-    user_id = unicode("simonmånsson", 'utf-8')
-    p_name = request.query.name + str(date.today())
-    test = request.query.track
-    tracks = []
-    tracks = test.split(',')
-    '''
-    p_name = "test" + str(date.today())
-    tracks = ["spotify:track:0UZaC4NXLJyrZ3WJYpyPhk",
-              "spotify:track:57oEUu3QfamsvthkU33CJf",
-              "spotify:track:5sgOxBzqCcixxnPIf7q1Mk"]
-              '''
+    # if request.headers.get('Content-Type') != "application/json":
+    #     abort(400, "Bad request")
+    user_id = request.json.get('user_id')
+    p_name = request.json.get('name')
+    tracks = request.json.get('tracks')
     access_token = update_access_token(request)
     p_id, p_link = spotify.create_playlist(access_token, user_id, p_name)
     status_code = spotify.add_tracks(access_token, user_id, p_id, tracks)
-    return tracks
-
-
-@route('/<url:re:.+>')
-def catch_all(url):
-    return static_file('index.html', root='../app')
-
-
-@route('/')
-def root():
-    return static_file('index.html', root='../app')
+    if status_code == 201:
+        return p_link
+    elif status_code == 403:
+        abort(403, "Unauthorized")
+    return "neither 201 nor 403... hmmmm...."
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader=True)

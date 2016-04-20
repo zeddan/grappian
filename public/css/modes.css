@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Phosphate";
+    src: url('../fonts/phosphate.ttf');
+}
+
 body {
     margin-bottom: 60px;
     font-family: 'Quicksand', sans-serif;
@@ -102,6 +107,7 @@ body {
     font-weight: 700;
     padding: 0.75em;
     color: #0CBF9D;
+    font-family: "Phosphate";
 }
 
 .footer-content-icon {
