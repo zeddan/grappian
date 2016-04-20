@@ -1,10 +1,5 @@
 @import url('modes.css');
 
-@font-face {
-    font-family: "Gotham Bold";
-    src: url('../fonts/gotham-bold.ttf');
-}
-
 html {
     position: relative;
     min-height: 100%;
@@ -19,39 +14,38 @@ body{
 }
 
 .header {
-	height: 60px;
-	width: 100%;
+    height: 60px;
+    width: 100%;
 }
 
-.page_title {
+.page_title{
     text-align: center;
     color:white;
 }
 
-.welcomeMessage {
-    font-family: "Gotham Bold";
+.welcomeMessage{
+    font-family: 'Quicksand', sans-serif;
     background-color: #E98866;
-    margin: 2em;
-    font-size: 1.2em;
-    letter-spacing: 0.15em;
-    color: #FAFAFA;
+    margin: 2em auto;
+    margin-top: 11em;
+    font-size: 1.5em;
+    color: #fff;
     display: -webkit-inline-box;
-    display: -moz-inline-box;
-    padding: 1.2em 6em;
+    padding: 0.5em 4.5em;
+    font-weight: 400;
 }
 
-.uppercase {
+.uppercase{
     text-transform: uppercase;
 }
 
-.infoText {
+.infoText{
     font-family: 'Quicksand', sans-serif;
     color: #fff;
     margin: 1em auto;
     font-size: 20px;
 }
 
-<<<<<<< HEAD
 .infoResult{
     font-family: 'Quicksand', sans-serif;
     color: #fff;
@@ -66,31 +60,21 @@ body{
 
 .loginBtn a{
     font-family: 'Quicksand', sans-serif;
-=======
-.loginBtn a {
-    transition: all 0.1s ease;
-    font-family: 'Gotham Bold', sans-serif;
->>>>>>> a58e33213032b69071a6c0504648112abc180517
     display: -webkit-inline-box;
-    display: -moz-inline-box;
-    border: 3px solid #FDE037;
+    border: 2px solid #FDE037;
+    color: #FDE037;
     margin: 3em auto;
-    padding: 1em 4em;
+    padding: 0.3em 2.5em;
     cursor: pointer;
+    font-weight: 400;
     text-decoration: none;
     color: #FDE037;
 }
 
-.loginBtn a:hover {
-    background-color: #FDE037;
-    color: rgb(255, 255, 255);
-}
-
-.loginBtn a:active {
+.loginBtn a:active{
     margin: 3.2em auto;
 }
 
-<<<<<<< HEAD
 .resultBtn a{
     font-family: 'Quicksand', sans-serif;
     display: -webkit-inline-box;
@@ -113,8 +97,5 @@ body{
 }
 
 .center{
-=======
-.center {
->>>>>>> a58e33213032b69071a6c0504648112abc180517
     text-align: center;
 }
