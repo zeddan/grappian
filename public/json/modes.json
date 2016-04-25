@@ -1,0 +1,131 @@
+{
+    "casual": {
+        "title": "casual",
+        "preferences": {
+            "genres": [
+                "african blues",
+                "brill building pop",
+                "calypso",
+                "chimurenga",
+                "coldwave",
+                "conscious reggae",
+                "contemporary flamenco",
+                "cool jazz",
+                "cowpunk",
+                "crack rock",
+                "danish folk",
+                "dirty disco",
+                "duranguense",
+                "extreme doom",
+                "glitterhouse",
+                "hair metal",
+                "harsh ebm",
+                "italian alternative",
+                "kayokyoku",
+                "new weird america",
+                "sea shanties"
+            ], 
+            "moods": [
+                "aggressive",
+                "bouncy",
+                "cold",
+                "dark",
+                "energetic",
+                "futuristic",
+                "gloomy",
+                "hypnotic",
+                "industrial",
+                "joyous",
+                "laid-back",
+                "mystical",
+                "ominous",
+                "poignant",
+                "quiet",
+                "reflective",
+                "sophisticated",
+                "theater",
+                "whimsical"
+            ]
+        }
+    }, 
+    "theme": {
+        "title": "theme",
+        "presets": [
+            {
+                "name": "enso",
+                "genre": "ambient",
+                "target": {
+                    "danceability": "0.7",
+                    "instrumentalness": "0.11",
+                    "liveness": "0.11",
+                    "popularity": "30",
+                    "speechiness": "0.3",
+                    "tempo": "80",
+                    "valance": "0.03"
+                }
+            },
+            {
+                "name": "tiger strike",
+                "genre": [
+                    "metal",
+                    "heavy-metal",
+                    "metalcore"
+                ],
+                "target": {
+                    "acousticness": "0.05",
+                    "danceability": "0.2",
+                    "energy": "0.8",
+                    "instrumentalness": "0.5",
+                    "loudness": "0.8",
+                    "popularity": "10",
+                    "tempo": "120",
+                    "valance": "0.1"
+                }
+            }
+        ]
+    },
+    "expert": {
+        "title": "expert",
+        "preferences": {
+            "floats": [
+                "danceability",
+                "acousticness",
+                "energy",
+                "instrumentalness",
+                "valence",
+                "liveness",
+                "speechiness"
+            ],
+            "preset": {
+                "key": [
+                    {"C": 0},
+                    {"C#": 1},
+                    {"D": 2},
+                    {"D#": 3},
+                    {"E": 4},
+                    {"F": 5},
+                    {"F#": 6},
+                    {"G": 7},
+                    {"G#": 8},
+                    {"A": 9},
+                    {"A#": 10},
+                    {"B": 11}
+                ],
+                "mode": [
+                    {"minor": 0},
+                    {"major": 1}
+                ],
+                "popularity": [
+                    {"under the radar": 10},
+                    {"street artist": 30},
+                    {"star": 50},
+                    {"mainstream": 80}
+                ]
+            },
+            "text": [
+                "tempo",
+                "duration_ms"
+            ]
+        }
+    }
+}
