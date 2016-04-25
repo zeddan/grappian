@@ -13,6 +13,16 @@
             $scope.casual = data.casual;
             $scope.theme = data.theme;
             $scope.expert = data.expert;
+            $scope.expert.preferences.floats.forEach(function(name) {
+                $('#'+name+'-slider').slider({
+                    orientation: 'horizontal',
+                    range: false,
+                    value: 0,
+                    change: function(event, ui) {
+                        $scope.preferences.expert[name] = ui.value;
+                    }
+                });
+            });
         });
         $scope.titles = {
             'modes': 'modes',
@@ -58,19 +68,12 @@
             else if ($scope.selectedMode == $scope.modes[1])
                 req.params = $scope.preferences.theme;
             else if ($scope.selectedMode == $scope.modes[2])
-                req.params = $scope.preferences.theme;
+                req.params = $scope.preferences.expert;
+            // console.log(req);
             echonestService.createPlaylist(req);
             $location.path('/result');
         };
         $scope.selectedMode = $scope.modes[2];
-        $('#danceability-slider').slider({
-            orientation: 'horizontal',
-            range: false,
-            value: 0,
-            change: function(event, ui) {
-                $scope.sliderValue = ui.value;
-            }
-        });
     }]);
 
     app.controller('LoginController', [function() {}]);
