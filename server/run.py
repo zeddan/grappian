@@ -66,6 +66,12 @@ def authorize_callback():
                         expires=time()*2,
                         domain='localhost',
                         path='/')
+    user_data = spotify.me(data['access_token'])
+    response.set_cookie('username',
+                        user_data['id'],
+                        expires=time()*2,
+                        domain='localhost',
+                        path='/')
     redirect('http://localhost:8000/#/modes')
 
 
