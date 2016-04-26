@@ -16,7 +16,7 @@
             })
             .when('/modes', {
                 templateUrl: 'partials/modesView.html',
-                controller: 'ModesController',
+                controller: 'ModesController'
             })
             .when('/review', {
                 templateUrl: 'partials/reviewView.html',

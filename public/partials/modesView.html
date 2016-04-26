@@ -7,52 +7,79 @@
                 <div class="modes-h1">{{ titles.modes }}</div>
                 <div ng-repeat="mode in modes">
                     <div class="modes-h2"
-                         ng-model="mode"
-                         ng-class="{'modes-active': selected.mode == mode}"
-                         ng-click="selectMode($index)">
+                        ng-model="mode"
+                        ng-class="{'modes-active': selectedMode == mode}"
+                        ng-click="selectMode($index)">
                         {{ mode }}
                     </div>
                 </div>
             </div>
 
-            <!-- preferences -->
             <div class="col-xs-12 col-sm-6 col-md-10">
-                <div class="modes-h1">{{ titles.preferences }}</div>
-                <div class="modes-h2 preferences-h2">{{ titles.casual.genre }}</div>
-                <div class="row">
-                    <div ng-repeat="genre in preferences.casual.genres">
-                        <div class="casual-value col-xs-12 col-sm-6 col-md-4"
-                             ng-model="genre"
-                             ng-init="selected.params.genre=''"
-                             ng-class="{
-                                'pref-active': selected.params.genre==genre,
-                                'pref-inactive': selected.params.genre!=genre &amp;&amp; 
-                                                 selected.params.genre!='',
-                                'pref-default': selected.params.genre==''
-                             }"
-                             ng-click="selectGenre($index)">
-                            {{ genre }}  
+                <div class="modes-h1">
+                    {{ titles.preferences }}
+                </div>
+
+                <!-- casual view -->
+                <div id="casual-view" ng-show="selectedMode == modes[0]">
+                    <div class="modes-h2 preferences-h2">{{ titles.casual.genre }}</div>
+                    <div class="row">
+                        <div ng-repeat="genre in casual.preferences.genres">
+                            <div class="casual-value col-xs-12 col-sm-6 col-md-4"
+                                ng-model="genre"
+                                ng-init="preferences.casual.genre=''"
+                                ng-class="{
+                                    'pref-active': preferences.casual.genre==genre,
+                                    'pref-inactive': preferences.casual.genre!=genre &amp;&amp;
+                                                     preferences.casual.genre!='',
+                                    'pref-default': preferences.casual.genre==''
+                                }"
+                                ng-click="selectGenre($index, 'casual')">
+                                {{ genre }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modes-h2 preferences-h2">{{ titles.casual.mood }}</div>
+                    <div class="row">
+                        <div ng-repeat="mood in casual.preferences.moods">
+                            <div class="casual-value col-xs-12 col-sm-6 col-md-4"
+                                ng-model="mood"
+                                ng-init="preferences.casual.mood=''"
+                                ng-class="{
+                                    'pref-active': preferences.casual.mood==mood,
+                                    'pref-inactive': preferences.casual.mood!=mood &amp;&amp;
+                                                     preferences.casual.mood!='',
+                                    'pref-default': preferences.casual.mood==''
+                                }"
+                                ng-click="selectMood($index)">
+                                {{ mood }}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modes-h2 preferences-h2">{{ titles.casual.mood }}</div>
-                <div class="row">
-                    <div ng-repeat="mood in preferences.casual.moods">
-                        <div class="casual-value col-xs-12 col-sm-6 col-md-4"
-                             ng-model="mood"
-                             ng-init="selected.params.mood=''"
-                             ng-class="{
-                                'pref-active': selected.params.mood==mood,
-                                'pref-inactive': selected.params.mood!=mood &amp;&amp;
-                                                 selected.params.mood!='',
-                                'pref-default': selected.params.mood==''
-                             }"
-                             ng-click="selectMood($index)">
-                            {{ mood }}  
+
+                <!-- expert view -->
+                <div id="expert-view" ng-show="selectedMode == modes[2]">
+                    <div ng-repeat="float in expert.preferences.floats">
+                        <div class="modes-h2 preferences-h2">
+                            {{ float }}
                         </div>
+                        <div class="flat-slider" id="{{ float }}-slider"></div>
                     </div>
-                </div>
+
+                    <div ng-repeat="text in expert.preferences.text">
+                        <div class="modes-h2 preferences-h2">
+                            {{ text }}
+                        </div>
+                        <input>
+                        </input>
+                    </div>
+
+                </div> <!-- expert view -->
+
             </div>
+
+
         </div>
     </div>
     <footer class="footer" ng-click="submit()">

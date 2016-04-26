@@ -39,6 +39,11 @@ def after_req():
     response.headers['Vary'] = 'Accept-Encoding, Origin'
 
 
+
+@route('/public/<path:re:.+>')
+def static(path):
+    return static_file(path, root='../public')
+
 @route('/<:re:.*>', method='OPTIONS')
 def enableCORSGenericRoute():
     response.headers['Access-Control-Allow-Origin'] = 'http://localhost:8000'
@@ -46,6 +51,7 @@ def enableCORSGenericRoute():
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers['Vary'] = 'Accept-Encoding, Origin'
+
 
 
 @route('/authorize')
