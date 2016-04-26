@@ -24,7 +24,7 @@
                 "kayokyoku",
                 "new weird america",
                 "sea shanties"
-            ], 
+            ],
             "moods": [
                 "aggressive",
                 "bouncy",
@@ -47,7 +47,7 @@
                 "whimsical"
             ]
         }
-    }, 
+    },
     "theme": {
         "title": "theme",
         "presets": [
@@ -81,7 +81,24 @@
                     "tempo": "120",
                     "valance": "0.1"
                 }
-            }
+            },
+            {
+                "name": "MDMA & chill",
+                "genre": [
+                    "trance",
+                    "techno",
+                    "electro",
+                    "trip-hop"
+                ],
+                "target": {
+                    "acousticness": "0.12",
+                    "danceability": "0.5",
+                    "valance": "0.7",
+                    "acousticness": "0.2",
+                    "energy": "0.5"
+                }
+            },
+
         ]
     },
     "expert": {
