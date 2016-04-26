@@ -15,6 +15,7 @@
                 </div>
             </div>
 
+            <!-- preferences -->
             <div class="col-xs-12 col-sm-6 col-md-10">
                 <div class="modes-h1">
                     {{ titles.preferences }}
@@ -71,15 +72,26 @@
                         <div class="modes-h2 preferences-h2">
                             {{ text }}
                         </div>
-                        <input>
+                        <input type="text"
+                            ng-pattern="/^[0-9]*\.?[0-9]+$/"
+                            ng-model="preferences.expert[text]">
                         </input>
                     </div>
 
+                    <div ng-repeat="(preset, attrs) in expert.preferences.presets">
+                        <div class="modes-h2 preferences-h2">
+                            {{ preset }}
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2" ng-repeat="(key, val) in attrs">
+                                <button ng-click="preferences.expert[preset]=val">
+                                    {{ key }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div> <!-- expert view -->
-
-            </div>
-
-
+            </div> <!-- preferences -->
         </div>
     </div>
     <footer class="footer" ng-click="submit()">
