@@ -74,7 +74,7 @@ def authorize_callback():
                         path='/')
     user_data = spotify.me(data['access_token'])
     response.set_cookie('username',
-                        user_data['id'],
+                        user_data['id'].encode('utf-8'),
                         expires=time()*2,
                         domain='localhost',
                         path='/')
