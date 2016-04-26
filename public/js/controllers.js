@@ -59,18 +59,26 @@
         //     $scope.preferences.theme.target = $scope.theme.presets[index].target;
         // };
         $scope.submit = function() {
+            var date = new Date();
+            var baseName = date.getDate() + '/' + (date.getMonth() + 1) + ' grappian ';
             var req = {
                 method: 'GET',
                 url: 'http://127.0.0.1:8080/api/casual',
             }
-            if ($scope.selectedMode == $scope.modes[0])
+            if ($scope.selectedMode == $scope.modes[0]) {
                 req.params = $scope.preferences.casual;
-            else if ($scope.selectedMode == $scope.modes[1])
+                baseName += $scope.preferences.casual['genre'];
+            }
+            else if ($scope.selectedMode == $scope.modes[1]) {
                 req.params = $scope.preferences.theme;
-            else if ($scope.selectedMode == $scope.modes[2])
+                //This will probably need some reworking after theme implementation 
+                baseName += $scope.preferences.theme['theme'];
+            }
+            else if ($scope.selectedMode == $scope.modes[2]) {
                 req.params = $scope.preferences.expert;
+            }
             // console.log(req);
-            echonestService.createPlaylist(req);
+            echonestService.createPlaylist(req, baseName);
             $location.path('/result');
         };
         $scope.selectedMode = $scope.modes[2];

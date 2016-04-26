@@ -21,11 +21,11 @@
                 }
             );
         };
-        service.createPlaylist = function(req) {
+        service.createPlaylist = function(req, name) {
             var url = 'http://127.0.0.1:8080/api/create-playlist';
             var data = {
                 'user_id': $cookies.get('username'),
-                'name': 'lala',
+                'name': name,
                 'tracks': [],
                 'access_token': $cookies.get('access_token'),
                 'refresh_token': $cookies.get('refresh_token')
