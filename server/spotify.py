@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import requests
 import json
@@ -40,8 +41,21 @@ def get_recommendations(access_token, genre, target):
             url = '%s/recommendations' % (base_url)
             headers = {'Authorization': 'Bearer %s' % access_token}
             params = {'seed_genres': genre,
-                      'target': target}
-            return requests.get(url, headers=headers, params=params).json()
+                      'target': target,
+                      'limit': '20'}
+            response = requests.get(url, headers=headers, params=params).json()
+            data = []
+            for track in response[u'tracks']:
+                new_dict = {}
+                new_dict['song_id'] = track[u'id']
+                new_dict['preview_url'] = track['preview_url']
+                for artist in track[u'artists']:
+                    new_dict['artist_name'] = artist[u'name']
+                    new_dict['artist_id'] = artist[u'id']
+                    image = requests.get(artist[u'href']).json()
+                    new_dict['artist_image'] = image['images'][1]['url']
+                data.append(new_dict)
+            return data
 
 
 def get_artist_image(artist_id):
