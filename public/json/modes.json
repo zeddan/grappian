@@ -97,8 +97,7 @@
                     "acousticness": "0.2",
                     "energy": "0.5"
                 }
-            },
-
+            }
         ]
     },
     "expert": {
