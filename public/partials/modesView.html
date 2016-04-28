@@ -65,13 +65,25 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
                             <div class="modes-h2 preferences-h2">key</div>
-                            <div class="row">
+                            <div class="row keys">
                                 <div class="col-xs-2"
                                     ng-repeat="(key, val) in expert.preferences.presets.key">
                                     <div class="">
                                         <button class="round-button-circle"
                                             ng-click="preferences.expert.preset.key=val">
                                             {{ key }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modes-h2 preferences-h2">scale</div>
+                            <div class="row scales">
+                                <div class="col-xs-6"
+                                    ng-repeat="(scale, val) in expert.preferences.presets.mode">
+                                    <div class="">
+                                        <button class="rounded-button"
+                                            ng-click="preferences.expert.preset.mode=val">
+                                            {{ scale }}
                                         </button>
                                     </div>
                                 </div>
