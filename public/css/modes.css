@@ -166,6 +166,19 @@ body {
     color: #0CBF9D;
 }
 
+.text-input {
+    display: block;
+    background: none;
+    border: none;
+    border-bottom: 3px solid #fafafa;
+    padding: 0.5em;
+    color: #fafafa;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0 auto;
+}
+
 .footer {
     transition: all 0.1s ease;
 	position: fixed;
