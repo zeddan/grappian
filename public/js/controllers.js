@@ -7,8 +7,10 @@
     '$scope',
     '$http',
     '$location',
+    '$rootScope',
     'echonestService',
-    function($scope, $http, $location, echonestService) {
+    'spotifyService',
+    function($scope, $http, $location, $rootScope, echonestService, spotifyService) {
         $http.get('json/modes.json').success(function(data) {
             $scope.casual = data.casual;
             $scope.theme = data.theme;
@@ -55,30 +57,43 @@
         // use this for themes view
         //
         // $scope.selectTheme = function(index) {
-        //     $scope.preferences.theme.genre = $scope.theme.presets[index].genre;
-        //     $scope.preferences.theme.target = $scope.theme.presets[index].target;
+        //     $scope.preferences.theme = $scope.theme.presets[index];
         // };
         $scope.submit = function() {
+            //one spotifyService.getRecommendations after the if-statments should be enough
             var date = new Date();
             var baseName = date.getDate() + '/' + (date.getMonth() + 1) + ' grappian ';
             var req = {
-                method: 'GET',
-                url: 'http://127.0.0.1:8080/api/casual',
             }
             if ($scope.selectedMode == $scope.modes[0]) {
                 req.params = $scope.preferences.casual;
                 baseName += $scope.preferences.casual['genre'];
+                req.url = 'http://127.0.0.1:8080/api/casual'
+                echonestService.createPlaylist(req, baseName);
             }
             else if ($scope.selectedMode == $scope.modes[1]) {
-                req.params = $scope.preferences.theme;
-                //This will probably need some reworking after theme implementation 
-                baseName += $scope.preferences.theme['theme'];
+                //only for testing
+                $scope.preferences.theme = $scope.theme.presets[0];
+                req = $scope.preferences.theme;
+                console.log(req);
+                baseName += req.name;
+                spotifyService.getRecommendations(req, function(res) {
+                    console.log("result in controller: ");
+                    $rootScope.getRecommendations = res;
+                    console.log($rootScope.getRecommendations);
+                    spotifyService.createPlaylist($rootScope.getRecommendations, baseName);
+                });
             }
             else if ($scope.selectedMode == $scope.modes[2]) {
-                req.params = $scope.preferences.expert;
+                req['target'] = $scope.preferences.expert;
+                //genre should be selectable
+                req.genre = 'ambient';
+                spotifyService.getRecommendations(req, function(res) {
+                    $rootScope.getRecommendations = res;
+                    spotifyService.createPlaylist($rootScope.getRecommendations, baseName);
+                });
             }
-            // console.log(req);
-            echonestService.createPlaylist(req, baseName);
+
             $location.path('/result');
         };
         $scope.selectedMode = $scope.modes[2];
