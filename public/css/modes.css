@@ -4,7 +4,7 @@
 }
 
 body {
-    margin-bottom: 60px;
+    margin-bottom: 120px;
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -24,7 +24,9 @@ body {
 
 .flat-slider.ui-slider-horizontal {
     height: 4px;
-    width: 300px;
+    max-width: 40em;
+    min-width: 15em;
+    margin: 0 auto;
 }
 
 .flat-slider.ui-slider-vertical {
@@ -35,6 +37,10 @@ body {
 .flat-slider .ui-slider-handle {
     width: 8px;
     height: 20px;
+    margin: 0;
+    z-index: 0;
+    position: absolute;
+    touch-action: none;
     background: #ffb52d;
     border: none;
     cursor: pointer;
