@@ -21,7 +21,7 @@ body {
     height: 4px;
     max-width: 40em;
     min-width: 15em;
-    margin: 0 auto;
+    margin: 0 auto 2.5em;
 }
 
 .flat-slider.ui-slider-vertical {
@@ -120,6 +120,8 @@ body {
 
 .preferences-h2 {
     color: #fafafa;
+    font-size: 1.5em;
+    margin-bottom: 1em;
     text-align: left;
     display: -webkit-inline-box;
     display: -moz-inline-box;
@@ -155,22 +157,22 @@ body {
     font-size: 1.2em;
 }
 
+.expert-box {
+    margin: 0.5em auto 2.5em;
+    min-width: 25em;
+}
+
+.center-box {
+    margin: 0 auto;
+}
+
 .keys {
     max-width: 30em;
-    min-width: 25em;
-    margin: 0 auto;
 }
 
 .scales {
     display: flex;
     max-width: 30em;
-    min-width: 25em;
-    margin: 0 auto;
-}
-
-.popularities {
-    min-width: 25em;
-    margin: 0 auto;
 }
 
 .circle-button {
@@ -178,6 +180,7 @@ body {
     border-radius: 50%;
     border: 2px solid #fafafa;
     overflow: hidden;
+    margin: 0.5em 0;
     width: 3em;
     height: 3em;
     background: none;
@@ -217,8 +220,8 @@ body {
     background: none;
     border: none;
     border-bottom: 3px solid #fafafa;
-    padding: 0.5em;
     color: #fafafa;
+    width: 15em;
     font-weight: bold;
     letter-spacing: 1px;
     text-align: center;

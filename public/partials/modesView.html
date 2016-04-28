@@ -23,7 +23,7 @@
 
                 <!-- casual view -->
                 <div id="casual-view" ng-show="selectedMode == modes[0]">
-                    <div class="modes-h2 preferences-h2">{{ titles.casual.genre }}</div>
+                    <div class="preferences-h2">{{ titles.casual.genre }}</div>
                     <div class="row">
                         <div ng-repeat="genre in casual.preferences.genres">
                             <div class="casual-value col-xs-12 col-sm-6 col-md-4"
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modes-h2 preferences-h2">{{ titles.casual.mood }}</div>
+                    <div class="preferences-h2">{{ titles.casual.mood }}</div>
                     <div class="row">
                         <div ng-repeat="mood in casual.preferences.moods">
                             <div class="casual-value col-xs-12 col-sm-6 col-md-4"
@@ -63,12 +63,14 @@
                 <div id="expert-view" ng-show="selectedMode == modes[2]">
 
                     <div class="row">
+
+                        <!-- key box -->
                         <div class="col-xs-12 col-md-6">
-                            <div class="modes-h2 preferences-h2">key</div>
-                            <div class="row keys">
-                                <div class="col-xs-2"
-                                    ng-repeat="(key, val) in expert.preferences.presets.key">
-                                    <div class="">
+                            <div class="expert-box">
+                                <div class="preferences-h2">key</div>
+                                <div class="row keys center-box">
+                                    <div class="col-xs-2"
+                                        ng-repeat="(key, val) in expert.preferences.presets.key">
                                         <button class="circle-button"
                                             ng-click="preferences.expert.preset.key=val">
                                             {{ key }}
@@ -76,46 +78,65 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modes-h2 preferences-h2">scale</div>
-                            <div class="row scales">
-                                <div class="col-xs-6"
-                                    ng-repeat="(scale, val) in expert.preferences.presets.mode">
-                                    <div class="">
-                                        <button class="rounded-button"
-                                            ng-click="preferences.expert.preset.mode=val">
-                                            {{ scale }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div> <!-- key box -->
+
+                        <!-- tempo box -->
                         <div class="col-xs-12 col-md-6">
-                            <div class="modes-h2 preferences-h2">tempo</div>
-                            <input class="text-input" 
-                                type="text"
-                                ng-pattern="/^[0-9]*\.?[0-9]+$/"
-                                ng-model="preferences.expert.tempo"/>
-                            <div class="modes-h2 preferences-h2">song length</div>
-                            <input class="text-input" 
-                                type="text"
-                                ng-pattern="/^[0-9]*\.?[0-9]+$/"
-                                ng-model="preferences.expert.duration_ms"/>
+                            <div class="expert-box">
+                                <div class="preferences-h2">tempo</div>
+                                <input class="text-input" 
+                                    type="text"
+                                    ng-pattern="/^[0-9]*\.?[0-9]+$/"
+                                    ng-model="preferences.expert.tempo"/>
+                            </div> <!-- tempo box -->
                         </div>
                     </div>
-                    <div class="modes-h2 preferences-h2">popularity</div>
-                    <div class="row popularities">
-                        <div class="col-xs-6 col-md-3"
-                            ng-repeat="(popularity, val) in expert.preferences.presets.popularity">
-                            <div class="">
-                                <button class="rounded-button popularity-button"
-                                    ng-click="preferences.expert.preset.popularity=val">
-                                    <div ng-repeat="n in range($index+1)" class="glyphicon glyphicon-star footer-content-icon" aria-hidden="true"></div>
-                                </button>
+                    <div class="row">
+                        <!-- scale box -->
+                        <div class="col-xs-12 col-md-6">
+                            <div class="expert-box">
+                                <div class="preferences-h2">scale</div>
+                                <div class="row scales center-box">
+                                    <div class="col-xs-6"
+                                        ng-repeat="(scale, val) in expert.preferences.presets.mode">
+                                        <div class="">
+                                            <button class="rounded-button"
+                                                ng-click="preferences.expert.preset.mode=val">
+                                                {{ scale }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- scale box -->
+                        </div>
+
+                        <!-- song length box -->
+                        <div class="col-xs-12 col-md-6">
+                            <div class="expert-box">
+                                <div class="preferences-h2">song length</div>
+                                <input class="text-input" 
+                                    type="text"
+                                    ng-pattern="/^[0-9]*\.?[0-9]+$/"
+                                    ng-model="preferences.expert.duration_ms"/>
+                            </div>
+                        </div> <!-- song length box -->
+                    </div>
+                    <div class="expert-box">
+                        <div class="preferences-h2">popularity</div>
+                        <div class="row center-box">
+                            <div class="col-xs-6 col-md-3"
+                                ng-repeat="(popularity, val) in expert.preferences.presets.popularity">
+                                <div class="">
+                                    <button class="rounded-button popularity-button"
+                                        ng-click="preferences.expert.preset.popularity=val">
+                                        <div ng-repeat="n in range($index+1)" class="glyphicon glyphicon-star footer-content-icon" aria-hidden="true"></div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div ng-repeat="float in expert.preferences.floats">
-                        <div class="modes-h2 preferences-h2">
+                        <div class="preferences-h2">
                             {{ float }}
                         </div>
                         <div class="flat-slider" ng-attr-id="{{ float }}-slider"></div>
