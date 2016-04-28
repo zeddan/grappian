@@ -112,6 +112,11 @@ body {
     color: #fafafa;
 }
 
+.preferences {
+    max-width: 55em;
+    margin: 0 auto;
+}
+
 .preferences-h2 {
     color: #fafafa;
     text-align: left;
