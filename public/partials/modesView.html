@@ -61,11 +61,26 @@
 
                 <!-- expert view -->
                 <div id="expert-view" ng-show="selectedMode == modes[2]">
+
+                    <div class="modes-h2 preferences-h2">key</div>
+                    <div class="row">
+                        <div class="col-xs-2"
+                            ng-repeat="(key, val) in expert.preferences.presets.key">
+                            <div class="">
+                                <button class="round-button-circle"
+                                    ng-click="preferences.expert.preset.key=val">
+                                    {{ key }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
                     <div ng-repeat="float in expert.preferences.floats">
                         <div class="modes-h2 preferences-h2">
                             {{ float }}
                         </div>
-                        <div class="flat-slider" id="{{ float }}-slider"></div>
+                        <div class="flat-slider" ng-attr-id="{{ float }}-slider"></div>
                     </div>
 
                     <div ng-repeat="text in expert.preferences.text">
@@ -74,22 +89,10 @@
                         </div>
                         <input type="text"
                             ng-pattern="/^[0-9]*\.?[0-9]+$/"
-                            ng-model="preferences.expert[text]">
-                        </input>
+                            ng-model="preferences.expert[text]"/>
                     </div>
+                    -->
 
-                    <div ng-repeat="(preset, attrs) in expert.preferences.presets">
-                        <div class="modes-h2 preferences-h2">
-                            {{ preset }}
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-2" ng-repeat="(key, val) in attrs">
-                                <button ng-click="preferences.expert[preset]=val">
-                                    {{ key }}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div> <!-- expert view -->
             </div> <!-- preferences -->
         </div>

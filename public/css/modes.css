@@ -149,6 +149,23 @@ body {
     font-size: 1.2em;
 }
 
+.round-button-circle {
+    transition: all 0.1s ease;
+    border-radius: 50%;
+    border: 2px solid #fafafa;
+    overflow: hidden;
+    width: 3em;
+    height: 3em;
+    background: none;
+    color: #fafafa;
+    font-weight: bold;
+}
+
+.round-button-circle:hover {
+    background: #fafafa;
+    color: #0CBF9D;
+}
+
 .footer {
     transition: all 0.1s ease;
 	position: fixed;
