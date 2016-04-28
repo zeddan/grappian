@@ -178,7 +178,7 @@ body {
     margin: 0 auto;
 }
 
-.round-button-circle {
+.circle-button {
     transition: all 0.1s ease;
     border-radius: 50%;
     border: 2px solid #fafafa;
@@ -190,7 +190,7 @@ body {
     font-weight: bold;
 }
 
-.round-button-circle:hover {
+.circle-button:hover {
     background: #fafafa;
     color: #0CBF9D;
 }
