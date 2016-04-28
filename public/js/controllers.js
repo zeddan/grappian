@@ -81,6 +81,12 @@
             echonestService.createPlaylist(req, baseName);
             $location.path('/result');
         };
+        $scope.range = function(range) {
+            var input = [];
+            for (var i = 1; i <= range; i++)
+                input.push(i);
+            return input;
+        };
         $scope.selectedMode = $scope.modes[2];
     }]);
 
