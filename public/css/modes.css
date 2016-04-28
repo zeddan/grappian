@@ -166,6 +166,18 @@ body {
     margin: 0 auto;
 }
 
+.scales {
+    display: flex;
+    max-width: 30em;
+    min-width: 25em;
+    margin: 0 auto;
+}
+
+.popularities {
+    min-width: 25em;
+    margin: 0 auto;
+}
+
 .round-button-circle {
     transition: all 0.1s ease;
     border-radius: 50%;
@@ -183,21 +195,15 @@ body {
     color: #0CBF9D;
 }
 
-.scales {
-    display: flex;
-    max-width: 30em;
-    min-width: 25em;
-    margin: 0 auto;
-}
-
 .rounded-button {
+    width: 10em;
+    height: 4em;
     transition: all 0.1s ease;
     font-family: 'Gotham Bold', sans-serif;
     display: block;
     border: 3px solid #fafafa;
     border-radius: 30px;
     margin: 0 auto;
-    padding: 1em 4em;
     color: #fafafa;
     background: none;
 }
@@ -205,6 +211,10 @@ body {
 .rounded-button:hover {
     background: #fafafa;
     color: #0CBF9D;
+}
+
+.popularity-button {
+    margin-bottom: 1em;
 }
 
 .text-input {

@@ -104,10 +104,10 @@
                     </div>
                     <div class="modes-h2 preferences-h2">popularity</div>
                     <div class="row popularities">
-                        <div class="col-xs-3"
+                        <div class="col-xs-6 col-md-3"
                             ng-repeat="(popularity, val) in expert.preferences.presets.popularity">
                             <div class="">
-                                <button class="rounded-button"
+                                <button class="rounded-button popularity-button"
                                     ng-click="preferences.expert.preset.popularity=val">
                                     <div ng-repeat="n in range($index+1)" class="glyphicon glyphicon-star footer-content-icon" aria-hidden="true"></div>
                                 </button>
