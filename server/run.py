@@ -39,10 +39,10 @@ def after_req():
     response.headers['Vary'] = 'Accept-Encoding, Origin'
 
 
-
 @route('/public/<path:re:.+>')
 def static(path):
     return static_file(path, root='../public')
+
 
 @route('/<:re:.*>', method='OPTIONS')
 def enableCORSGenericRoute():
@@ -51,7 +51,6 @@ def enableCORSGenericRoute():
     response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     response.headers['Vary'] = 'Accept-Encoding, Origin'
-
 
 
 @route('/authorize')
@@ -74,7 +73,7 @@ def authorize_callback():
                         path='/')
     user_data = spotify.me(data['access_token'])
     response.set_cookie('username',
-                        user_data['id'].encode('utf-8'),
+                        user_data['id'],
                         expires=time()*2,
                         domain='localhost',
                         path='/')
@@ -88,17 +87,17 @@ def casual():
     return json.dumps(echonest.get_casual(genre, mood))
 
 
-@route('/api/getrecommendations')
+@route('/api/getrecommendations', method="POST")
 def get_recommendations():
-    genre = request.query.genre
-    target = request.query.target
+    genre = request.json.get('genre')
+    target = request.json.get('target')
     access_token = update_access_token(request)
-    return spotify.get_recommendations(access_token, genre, target)
+    return json.dumps(spotify.get_recommendations(access_token, genre, target))
 
 
-@route('/api/getimages')
+@route('/api/getimages', method="POST")
 def get_artist_image():
-    ids = request.query.artistid
+    ids = request.json.get('artistid')
     return spotify.get_artist_image(ids)
 
 
@@ -110,8 +109,6 @@ def me():
 
 @route('/api/create-playlist', method='POST')
 def create_playlist():
-    # if request.headers.get('Content-Type') != "application/json":
-    #     abort(400, "Bad request")
     user_id = request.json.get('user_id')
     p_name = request.json.get('name')
     tracks = request.json.get('tracks')

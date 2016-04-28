@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import requests
 import json
@@ -45,20 +44,30 @@ def get_recommendations(access_token, genre, target):
                       'limit': '20'}
             response = requests.get(url, headers=headers, params=params).json()
             data = []
+#          print response.keys() is for debug purposes
+            print response.keys()
             for track in response[u'tracks']:
                 new_dict = {}
-                new_dict['song_id'] = track[u'id']
+                new_dict['song_id'] = track[u'uri']
                 new_dict['preview_url'] = track['preview_url']
                 for artist in track[u'artists']:
+                    # new_dict['artist_name is for'] for debug purposes
                     new_dict['artist_name'] = artist[u'name']
                     new_dict['artist_id'] = artist[u'id']
-                    image = requests.get(artist[u'href']).json()
-                    new_dict['artist_image'] = image['images'][1]['url']
                 data.append(new_dict)
             return data
 
 
+# broken
 def get_artist_image(artist_id):
     url = '%s/artists' % (base_url)
     params = {'ids': artist_id}
-    return requests.get(url, params=params).json()
+    response = requests.get(url, params=params).json()
+    data = []
+    for artist in response:
+        new_dict = {}
+        new_dict['artist_id'] = artist[u'id']
+        new_dict['artist_image'] = artist[u'images'][1][u'url']
+        new_dict['artist_name'] = artist[u'name']
+        data.append(new_dict)
+    return data
