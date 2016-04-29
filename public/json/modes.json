@@ -97,6 +97,41 @@
                     "acousticness": "0.2",
                     "energy": "0.5"
                 }
+            },
+            {
+                "name": "Happy Roadtrip",
+                "genre": "",
+                "target": {}
+            },
+            {
+                "name": "At the dentist",
+                "genre": "",
+                "target": {}
+            },
+            {
+                "name": "Sentimental Busride",
+                "genre": "",
+                "target": {}
+            },
+            {
+                "name": "Floor killer",
+                "genre": "",
+                "target": {}
+            },
+            {
+                "name": "Maximize",
+                "genre": "",
+                "target": {}
+            },
+            {
+                "name": "Time for exams!",
+                "genre": "",
+                "target": {}
+            },
+            {
+                "name": "How about no",
+                "genre": "",
+                "target": {}
             }
         ]
     },
