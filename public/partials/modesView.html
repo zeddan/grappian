@@ -59,6 +59,19 @@
                     </div>
                 </div>
 
+                <!-- theme view -->
+                <div id="theme-view" ng-show="selectedMode == modes[1]">
+                    <div class="row">
+                        <div ng-repeat="theme in theme.presets">
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <div class="theme-box">
+                                    {{ theme.name }} 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- expert view -->
                 <div id="expert-view" ng-show="selectedMode == modes[2]">
 

@@ -166,6 +166,24 @@ body {
     margin: 0 auto;
 }
 
+.theme-box {
+    transition: all 0.1s ease;
+    border: 3px solid #fafafa;
+    height: 12em;
+    width: 11em;
+    margin: 0.5em auto;
+    color: #fafafa;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 5em;
+}
+
+.theme-box:hover {
+    background: #fafafa;
+    color: #0CBF9D;
+}
+
 .keys {
     max-width: 30em;
 }
