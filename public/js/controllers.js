@@ -53,12 +53,11 @@
         $scope.selectMood = function(index) {
             $scope.preferences.casual.mood = $scope.casual.preferences.moods[index];
         };
-        //
-        // use this for themes view
-        //
-        // $scope.selectTheme = function(index) {
-        //     $scope.preferences.theme = $scope.theme.presets[index];
-        // };
+
+         $scope.selectTheme = function(index) {
+            $scope.preferences.theme = $scope.theme.presets[index];
+            console.log($scope.preferences.theme);
+         };
         $scope.submit = function() {
             //one spotifyService.getRecommendations after the if-statments should be enough
             var date = new Date();
@@ -72,8 +71,6 @@
                 echonestService.createPlaylist(req, baseName);
             }
             else if ($scope.selectedMode == $scope.modes[1]) {
-                //only for testing
-                $scope.preferences.theme = $scope.theme.presets[0];
                 req = $scope.preferences.theme;
                 console.log(req);
                 baseName += req.name;
@@ -93,7 +90,6 @@
                     spotifyService.createPlaylist($rootScope.getRecommendations, baseName);
                 });
             }
-
             $location.path('/result');
         };
         $scope.range = function(range) {
@@ -112,6 +108,4 @@
     'echonestService',
     function($scope, echonestService) {
     }]);
-
-
 }());
