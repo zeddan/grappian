@@ -26,6 +26,7 @@
                 templateUrl: 'partials/resultView.html',
                 controller: 'ResultController'
             })
+            .otherwise('/login')
     }]);
 
 }());
