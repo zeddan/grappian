@@ -64,8 +64,9 @@
                     <div class="row">
                         <div ng-repeat="theme in theme.presets">
                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                <div class="theme-box">
-                                    {{ theme.name }} 
+                                <div class="theme-box"
+                                    ng-click="selectTheme($index)">
+                                    {{ theme.name }}
                                 </div>
                             </div>
                         </div>
@@ -94,7 +95,7 @@
                         <!-- tempo box -->
                         <div class="col-xs-12 col-md-6 expert-box">
                             <div class="preferences-h2">tempo</div>
-                            <input class="text-input" 
+                            <input class="text-input"
                                 type="text"
                                 ng-pattern="/^[0-9]*\.?[0-9]+$/"
                                 ng-model="preferences.expert.tempo"/>
@@ -120,7 +121,7 @@
                         <!-- song length box -->
                         <div class="col-xs-12 col-md-6 expert-box">
                             <div class="preferences-h2">song length</div>
-                            <input class="text-input" 
+                            <input class="text-input"
                                 type="text"
                                 ng-pattern="/^[0-9]*\.?[0-9]+$/"
                                 ng-model="preferences.expert.duration_ms"/>
