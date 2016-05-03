@@ -179,7 +179,8 @@ body {
     padding-top: 5em;
 }
 
-.theme-box:hover {
+.theme-box:hover,
+.theme-active {
     background: #fafafa;
     color: #0CBF9D;
 }

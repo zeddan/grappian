@@ -65,6 +65,7 @@
                         <div ng-repeat="theme in theme.presets">
                             <div class="col-xs-6 col-sm-4 col-md-3">
                                 <div class="theme-box"
+                                    ng-class="{'theme-active': preferences.theme==theme}"
                                     ng-click="selectTheme($index)">
                                     {{ theme.name }}
                                 </div>
