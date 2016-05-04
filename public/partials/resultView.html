@@ -2,18 +2,19 @@
     <div class="container main-content">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 center">
-                <!--<div class="welcomeMessage uppercase">
-                    Hello
-                </div>-->
-               <div class="infoResult center">
-                    <h1 id="headresult" class="uppercase">Success</h1>
-                    <p>An awesome playlist has now been generated for you!</p>
+                <div class="resultMessage">
+                    SUCCESS
                 </div>
-                <div class="resultBtn uppercase">
-                    <a ng-href="{{ playlistLink }}">Check it out</a>
+                <div class="res-h1">
+                    An awesome playlist has now been generated for you.
                 </div>
-                <div class="">
-                    {{ tracks }}
+                <div class="res-h2">
+                    We figured <div id="playlist-name">{{ playlistName }}</div> would be a quite nice name.
+                </div>
+                <div class="loginBtn">
+                    <a ng-href="{{ playlistLink }}">
+                        CHECK IT OUT
+                    </a>
                 </div>
             </div>
         </div>

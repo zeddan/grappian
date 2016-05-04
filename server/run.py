@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+import base64
 import authorize as auth
 import json
 import spotify
@@ -72,8 +72,9 @@ def authorize_callback():
                         domain='localhost',
                         path='/')
     user_data = spotify.me(data['access_token'])
+    user = base64.b64encode(user_data[u'id'].encode('utf-8'))
     response.set_cookie('username',
-                        user_data['id'],
+                        user,
                         expires=time()*2,
                         domain='localhost',
                         path='/')
@@ -109,7 +110,7 @@ def me():
 
 @route('/api/create-playlist', method='POST')
 def create_playlist():
-    user_id = request.json.get('user_id')
+    user_id = base64.b64decode(request.json.get('user_id')).decode('utf-8')
     p_name = request.json.get('name')
     tracks = request.json.get('tracks')
     access_token = update_access_token(request)

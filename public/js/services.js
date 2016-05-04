@@ -44,6 +44,21 @@
                     console.log("error: ", err);
                 }
             );
+
+            service.getTracks(req, function(tracks){
+                data.tracks = tracks;
+                $http.post(url, JSON.stringify(data)).then(
+                    function(res) {
+                        $rootScope.playlistLink = res.data;
+                        $rootScope.playlistName = name;
+                        console.log($rootScope.playlistLink);
+                    },
+                    function(err) {
+                        console.log("error: ", err);
+                    }
+                );
+            });
+
         };
         return service;
     }]);

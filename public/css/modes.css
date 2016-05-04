@@ -72,7 +72,7 @@ body {
 }
 
 .main-content {
-    padding-top: 5em;
+    padding-top: 3em;
 }
 
 .modes-h1 {
@@ -179,7 +179,8 @@ body {
     padding-top: 5em;
 }
 
-.theme-box:hover {
+.theme-box:hover,
+.theme-active {
     background: #fafafa;
     color: #0CBF9D;
 }
@@ -206,7 +207,8 @@ body {
     font-weight: bold;
 }
 
-.circle-button:hover {
+.circle-button:hover,
+.circle-button-active {
     background: #fafafa;
     color: #0CBF9D;
 }
@@ -224,7 +226,8 @@ body {
     background: none;
 }
 
-.rounded-button:hover {
+.rounded-button:hover,
+.rounded-button-active {
     background: #fafafa;
     color: #0CBF9D;
 }
