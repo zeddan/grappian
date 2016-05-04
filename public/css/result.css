@@ -1,0 +1,39 @@
+.res-h1 {
+    font-family: 'Quicksand', sans-serif;
+    color: #FFF;
+    font-weight: bold;
+    letter-spacing: 0px;
+    margin: 1em auto;
+    font-size: 20px;
+}
+
+.res-h2 {
+    font-family: 'Quicksand', sans-serif;
+    color: #FFF;
+    font-weight: 400;
+    letter-spacing: 0px;
+    font-size: 20px;
+}
+
+#playlist-name {
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    font-weight: bold;
+    color: #FFE550;
+}
+
+.resultMessage {
+    font-family: "Gotham Bold";
+    /*background-color: #312F2D;*/
+    border: 3px solid #fafafa;
+    height: 10em;
+    width: 10em;
+    border-radius: 20em;
+    text-align: center;
+    letter-spacing: 0.15em;
+    color: #FAFAFA;
+    padding: 4.5em 2.2em;
+    margin: 1em 0;
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+}

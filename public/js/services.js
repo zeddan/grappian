@@ -35,6 +35,7 @@
                 $http.post(url, JSON.stringify(data)).then(
                     function(res) {
                         $rootScope.playlistLink = res.data;
+                        $rootScope.playlistName = name;
                         console.log($rootScope.playlistLink);
                     },
                     function(err) {
