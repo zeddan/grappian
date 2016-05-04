@@ -11,7 +11,7 @@ html {
     min-height: 100%;
 }
 
-body{
+body {
     background: rgb(0,190,155); /* Old browsers */
     background: -moz-linear-gradient(45deg,  rgba(0,190,155,1) 0%, rgba(255,226,181,1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(45deg,  rgba(0,190,155,1) 0%,rgba(255,226,181,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -39,6 +39,17 @@ body{
     display: -webkit-inline-box;
     display: -moz-inline-box;
     padding: 1.2em 6em;
+}
+
+.welcomeMessageNoBG {
+    font-family: "Gotham Bold";
+    margin: 2em;
+    font-size: 1.5em;
+    letter-spacing: 0.15em;
+    color: #FAFAFA;
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    padding: 0em 6em;
 }
 
 .uppercase {
@@ -77,4 +88,85 @@ body{
 
 .center {
     text-align: center;
+}
+
+.resultBtn a {
+    font-family: 'Quicksand', sans-serif;
+    display: -webkit-inline-box;
+    border: 2px solid #FDE037;
+    color: #FDE037;
+    margin-top: 2em;
+    padding: 1em 2.5em;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.infoResult {
+    font-family: 'Quicksand', sans-serif;
+    color: #fff;
+    margin: 1em auto;
+    font-size: 20px;
+    margin-top: 7.5em;
+}
+
+.resultBtn a:active {
+    margin: 2.1em auto;
+}
+
+.resultBtn a:hover {
+    font-weight: 900;
+}
+
+#headresult {
+    margin-bottom: 1em;
+}
+
+/* Preview related stuff are in testing phase */
+
+.embed-container iframe {
+    margin-right: 0.5em;
+}
+
+.acceptPreview {
+    transition: all 0.1s ease;
+    font-family: 'Gotham Bold', sans-serif;
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    border: 3px solid #FDE037;
+    margin: 3em 2.5em;
+    padding: 1em 6em;
+    cursor: pointer;
+    text-decoration: none;
+    color: #FDE037;
+}
+
+.acceptPreview:hover {
+    background-color: #FDE037;
+    color: rgb(255, 255, 255);
+}
+
+.declinePreview {
+    transition: all 0.1s ease;
+    font-family: 'Gotham Bold', sans-serif;
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    border: 3px solid rgba(55, 253, 227, 0.55);
+    margin: 3em 2.5;
+    padding: 1em 6em;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba(55, 253, 227, 0.55);
+}
+
+.declinePreview:hover {
+    background-color: rgba(55, 253, 227, 0.55);
+    color: white;
+}
+
+.topAlign {
+    vertical-align: top;
+}
+
+.bottomAlign {
+    vertical-align: bottom;
 }

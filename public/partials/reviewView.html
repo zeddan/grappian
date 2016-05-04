@@ -1,0 +1,27 @@
+<div ng-controller="ReviewController">
+    <div class="container main-content">
+        <div class="row center">
+
+            <div class="infoText center topAlign">
+                Here's three tracks as preview from your generated playlist!
+            </div>
+
+            <div class="embed-container">
+                <iframe ng-repeat="p in previews" ng-src="{{ p | trustAsResourceUrl }}"
+                        width="250" height="330" frameborder="0" allowtransparency="true">
+                </iframe>
+            </div>
+
+            <div class="bottomAlign">
+
+                <div class="declinePreview" ng-click="retry()">
+                        Nah, try again!
+                </div>
+                <div class="acceptPreview" ng-click="submit()">
+                        Sure, let's go!
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
