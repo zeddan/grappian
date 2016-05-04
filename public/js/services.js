@@ -7,7 +7,8 @@
     '$http',
     '$rootScope',
     '$cookies',
-    function($http, $rootScope, $cookies) {
+    '$location',
+    function($http, $rootScope, $cookies, $location) {
         var service = {};
         service.getTracks = function(req, callback) {
             $http(req).then(
@@ -16,32 +17,33 @@
                     res.data.forEach(function(e) {
                         tracks.push(e.song_id);
                     });
-                    $rootScope.tracks = tracks;
+                    console.log($rootScope.previews);
                     callback(tracks);
+                    $location.path('/review');
                 }
             );
         };
-        service.createPlaylist = function(req, name) {
+
+        service.createPlaylist = function(name, tracks) {
             var url = 'http://127.0.0.1:8080/api/create-playlist';
             var data = {
                 'user_id': $cookies.get('username'),
                 'name': name,
-                'tracks': [],
+                'tracks': tracks,
                 'access_token': $cookies.get('access_token'),
                 'refresh_token': $cookies.get('refresh_token')
             };
-            service.getTracks(req, function(tracks){
-                data.tracks = tracks;
-                $http.post(url, JSON.stringify(data)).then(
-                    function(res) {
-                        $rootScope.playlistLink = res.data;
-                        console.log($rootScope.playlistLink);
-                    },
-                    function(err) {
-                        console.log("error: ", err);
-                    }
-                );
-            });
+
+            $http.post(url, JSON.stringify(data)).then(
+                function(res) {
+                    $rootScope.playlistLink = res.data;
+                    console.log($rootScope.playlistLink);
+                    $location.path('/result');
+                },
+                function(err) {
+                    console.log("error: ", err);
+                }
+            );
         };
         return service;
     }]);
@@ -86,6 +88,7 @@
                 'access_token': $cookies.get('access_token'),
                 'refresh_token': $cookies.get('refresh_token')
             };
+
             service.getTracks(req, function(tracks){
                 data.tracks = tracks;
                 $http.post(url, JSON.stringify(data)).then(
