@@ -68,6 +68,7 @@ body{
 .loginBtn a:hover {
     background-color: #FDE037;
     color: rgb(255, 255, 255);
+    text-shadow: 2px 1px 8px rgba(107, 96, 73, 0.5);
 }
 
 .loginBtn a:active {
