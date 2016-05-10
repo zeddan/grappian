@@ -44,26 +44,6 @@ def get_recommendations(access_token, genre, target):
                       'limit': '20'}
             response = requests.get(url, headers=headers, params=params).json()
             data = []
-#          print response.keys() is for debug purposes
-            print response.keys()
             for track in response[u'tracks']:
-                new_dict = {}
-                new_dict['song_id'] = track[u'uri']
-                data.append(new_dict)
+                data.append({'song_id': track[u'uri']})
             return data
-
-
-
-# broken
-def get_artist_image(artist_id):
-    url = '%s/artists' % (base_url)
-    params = {'ids': artist_id}
-    response = requests.get(url, params=params).json()
-    data = []
-    for artist in response:
-        new_dict = {}
-        new_dict['artist_id'] = artist[u'id']
-        new_dict['artist_image'] = artist[u'images'][1][u'url']
-        new_dict['artist_name'] = artist[u'name']
-        data.append(new_dict)
-    return data
