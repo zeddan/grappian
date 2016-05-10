@@ -49,13 +49,9 @@ def get_recommendations(access_token, genre, target):
             for track in response[u'tracks']:
                 new_dict = {}
                 new_dict['song_id'] = track[u'uri']
-                new_dict['preview_url'] = track['preview_url']
-                for artist in track[u'artists']:
-                    # new_dict['artist_name is for'] for debug purposes
-                    new_dict['artist_name'] = artist[u'name']
-                    new_dict['artist_id'] = artist[u'id']
                 data.append(new_dict)
             return data
+
 
 
 # broken
