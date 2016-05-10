@@ -63,20 +63,38 @@
         $scope.submit = function() {
             //one spotifyService.getRecommendations after the if-statments should be enough
             var req = {};
+            var previewObject = [];
             if ($scope.selectedMode == $scope.modes[0]) {
                 $rootScope.preferences = $scope.preferences.casual;
-                req.params = $scope.preferences.casual;
-                req.url = 'http://127.0.0.1:8080/api/casual'
-                echonestService.getTracks(req, function(tracks) {
-                    $rootScope.tracks = tracks;
-                    $rootScope.previews = tracks.slice(0, 3);
+                req.genre = $scope.preferences.casual['genre'];
+                console.log(req.genre);
+                spotifyService.getRecommendations(req, function(tracks) {
+                    $rootScope.tracks = tracks
+                    console.log($rootScope.tracks);
+                    previewObject = tracks.slice(0, 3);
+                    $rootScope.previews = [];
+                    previewObject.forEach(function(e) {
+                        $rootScope.previews.push(e.song_id);
+
+                    });
+                    console.log($rootScope.previews);
+                    $location.path('/review');
                 });
             }
             else if ($scope.selectedMode == $scope.modes[1]) {
+                $rootScope.preferences = $scope.preferences.theme;
                 req = $scope.preferences.theme;
                 console.log(req);
-                spotifyService.getRecommendations(req, function(res) {
-                    $rootScope.tracks = res;
+                spotifyService.getRecommendations(req, function(tracks) {
+                    $rootScope.tracks = tracks
+                    console.log($rootScope.tracks);
+                    previewObject = tracks.slice(0, 3);
+                    $rootScope.previews = [];
+                    previewObject.forEach(function(e) {
+                        $rootScope.previews.push(e.song_id);
+
+                    });
+                    console.log($rootScope.previews);
                     $location.path('/review');
                 /*    spotifyService.createPlaylist(baseName, $rootScope.tracks); */
                 });
@@ -85,10 +103,17 @@
                 req['target'] = $scope.preferences.expert;
                 //genre should be selectable
                 req.genre = 'ambient';
-                spotifyService.getRecommendations(req, function(res) {
-                    $rootScope.tracks = res;
+                $rootScope.preferences = req;
+                spotifyService.getRecommendations(req, function(tracks) {
+                    $rootScope.tracks = tracks;
+                    previewObject = tracks.slice(0, 3);
+                    $rootScope.previews = [];
+                    previewObject.forEach(function(e) {
+                        $rootScope.previews.push(e.song_id);
+
+                    });
                     $location.path('/review');
-                /*    spotifyService.createPlaylist(baseName, $rootScope.tracks); */
+                    /*    spotifyService.createPlaylist(baseName, $rootScope.tracks); */
                 });
             }
             $rootScope.req = req;
@@ -109,27 +134,39 @@
         '$rootScope',
         '$route',
         '$location',
-        'echonestService',
-        function($scope, $rootScope, $route, $location, echonestService) {
+        'spotifyService',
+        function($scope, $rootScope, $route, $location, spotifyService) {
             $scope.previews = $rootScope.previews;
             $scope.submit = function() {
                 var req = {};
                 var date = new Date();
                 var baseName = date.getDate() + '/' + (date.getMonth() + 1) + ' grappian ';
                 req.url = 'http://127.0.0.1:8080/api/casual';
-                baseName += $rootScope.preferences['genre'];
-                echonestService.createPlaylist(baseName, $rootScope.tracks);
+                if($rootScope.preferences['name']) {
+                    baseName += $rootScope.preferences['name'];
+                } else if ($rootScope.preferences['genre']) {
+                    baseName += $rootScope.preferences['genre'];
+                } else {
+                    baseName += 'ambient';
+                }
+                console.log($rootScope.tracks);
+                spotifyService.createPlaylist(baseName, $rootScope.tracks);
                 $location.path('/result');
             }
 
             $scope.retry = function() {
                 var req = {};
-                req.params = $rootScope.preferences;
-                req.url = 'http://127.0.0.1:8080/api/casual';
-                    echonestService.getTracks(req, function(tracks) {
-                        $rootScope.tracks = tracks;
-                        $rootScope.previews = tracks.slice(0, 3);
-                        $route.reload();
+                req = $rootScope.preferences;
+                spotifyService.getRecommendations(req, function(tracks) {
+                    $rootScope.tracks = tracks
+                    console.log($rootScope.tracks);
+                    var previewObject = tracks.slice(0, 3);
+                    $rootScope.previews = [];
+                    previewObject.forEach(function(e) {
+                        $rootScope.previews.push(e.song_id);
+
+                    });
+                    $route.reload();
                 });
             }
     }]);
