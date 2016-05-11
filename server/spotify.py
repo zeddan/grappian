@@ -37,13 +37,13 @@ def add_tracks(access_token, user_id, playlist_id, tracks):
 
 
 def get_recommendations(access_token, genre, target):
-            url = '%s/recommendations' % (base_url)
-            headers = {'Authorization': 'Bearer %s' % access_token}
-            params = {'seed_genres': genre,
-                      'target': target,
-                      'limit': '20'}
-            response = requests.get(url, headers=headers, params=params).json()
-            data = []
-            for track in response[u'tracks']:
-                data.append({'song_id': track[u'uri']})
-            return data
+    url = '%s/recommendations' % (base_url)
+    headers = {'Authorization': 'Bearer %s' % access_token}
+    params = {'seed_genres': genre,
+                'target': target,
+                'limit': '20'}
+    response = requests.get(url, headers=headers, params=params).json()
+    data = []
+    for track in response[u'tracks']:
+        data.append({'song_id': track[u'uri']})
+    return data
