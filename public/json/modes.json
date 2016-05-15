@@ -38,17 +38,7 @@
                 "futuristic",
                 "gloomy",
                 "hypnotic",
-                "industrial",
-                "joyous",
-                "laid-back",
-                "mystical",
-                "ominous",
-                "poignant",
-                "quiet",
-                "reflective",
-                "sophisticated",
-                "theater",
-                "whimsical"
+                "industrial"
             ]
         }
     },
@@ -90,15 +80,16 @@
                 "name": "MDMA & chill",
                 "genre": [
                     "trance",
-                    "ambient",
-                    "trip-hop"
+                    "trip-hop",
+                    "folk"
                 ],
                 "target": {
-                    "acousticness": "0.12",
-                    "danceability": "0.5",
-                    "valence": "0.7",
                     "acousticness": "0.2",
-                    "energy": "0.5"
+                    "danceability": "0.1",
+                    "valence": "0.6",
+                    "energy": "0.2",
+                    "tempo": "60",
+                    "instrumentalness": "0.3"
                 }
             },
             {
@@ -113,8 +104,19 @@
             },
             {
                 "name": "Sentimental Busride",
-                "genre": "",
-                "target": {}
+                "genre": [
+                        "folk",
+                        "road-trip",
+                        "honky-tonk"
+                ],
+                "target": {
+                    "acousticness": "0.8",
+                    "danceability": "0.1",
+                    "valence": "0.7",
+                    "energy": "0.2",
+                    "tempo": "70",
+                    "instrumentalness": "0.3"
+                }
             },
             {
                 "name": "Floor killer",
