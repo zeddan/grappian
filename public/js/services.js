@@ -81,15 +81,6 @@
                 }
             );
         };
-        service.getArtistImages = function(req, callback) {
-            var url ='http://127.0.0.1:8080/api/getimages';
-            $http.post(url, JSON.stringify(req)).then(
-                function(res) {
-                    callback(res.data);
-
-                }
-            );
-        };
         service.getTracks = function(req, callback) {
             var tracks = [];
             req.forEach(function(e) {
