@@ -8,9 +8,8 @@
     '$http',
     '$location',
     '$rootScope',
-    'echonestService',
     'spotifyService',
-    function($scope, $http, $location, $rootScope, echonestService, spotifyService) {
+    function($scope, $http, $location, $rootScope, spotifyService) {
         $http.get('json/modes.json').success(function(data) {
             $scope.casual = data.casual;
             $scope.theme = data.theme;
@@ -140,8 +139,7 @@
 
     app.controller('ResultController', [
     '$scope',
-    'echonestService',
-    function($scope, echonestService) {
+    function($scope) {
     }]);
 
     app.filter('trustAsResourceUrl', ['$sce', function($sce) {
