@@ -74,11 +74,11 @@
                 req = $scope.preferences.theme;
             }
             else if ($scope.selectedMode == $scope.modes[2]) {
-                $rootScope.preferences = $scope.preferences.expert;
+                variableService.setPreferences($scope.preferences.expert);
                 req.genre = $scope.preferences.expert['genre'];
                 req['target'] = $scope.preferences.expert;
                 delete $scope.preferences.expert['genre'];
-                $rootScope.preferences = req;
+                variableService.setPreferences(req);
             }
             spotifyService.getRecommendations(req, function(tracks) {
                 variableService.setTracks(tracks);
