@@ -5,10 +5,9 @@
 
     app.factory('spotifyService', [
     '$http',
-    '$rootScope',
     '$cookies',
     '$location',
-    function($http, $rootScope, $cookies, $location) {
+    function($http, $cookies, $location) {
         var service = {};
         service.getRecommendations = function(req, callback) {
             var url ='http://127.0.0.1:8080/api/getrecommendations';
@@ -75,8 +74,7 @@
     }]);
 
     app.factory('variableService', [
-        '$rootScope',
-        function($rootScope) {
+        function() {
             var preferences = {};
             var tracks = [];
             var service = {};

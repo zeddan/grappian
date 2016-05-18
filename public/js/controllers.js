@@ -7,10 +7,9 @@
     '$scope',
     '$http',
     '$location',
-    '$rootScope',
     'spotifyService',
     'variableService',
-    function($scope, $http, $location, $rootScope, spotifyService, variableService) {
+    function($scope, $http, $location, spotifyService, variableService) {
         $http.get('json/modes.json').success(function(data) {
             $scope.casual = data.casual;
             $scope.theme = data.theme;
@@ -99,13 +98,12 @@
 
     app.controller('ReviewController', [
         '$scope',
-        '$rootScope',
         '$route',
         '$location',
         '$timeout',
         'spotifyService',
         'variableService',
-        function($scope, $rootScope, $route, $location, $timeout, spotifyService, variableService) {
+        function($scope, $route, $location, $timeout, spotifyService, variableService) {
             $scope.previews = variableService.getPreviews();
             $scope.submit = function() {
                 var tracks = variableService.getTracks();
