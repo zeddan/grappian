@@ -2,7 +2,6 @@ import base64
 import authorize as auth
 import json
 import spotify
-import echonest
 from time import time
 from datetime import date
 from bottle import route, run, request, response, static_file, \
@@ -79,13 +78,6 @@ def authorize_callback():
                         domain='localhost',
                         path='/')
     redirect('http://localhost:8000/#/modes')
-
-
-@route('/api/casual')
-def casual():
-    genre = request.query.genre
-    mood = request.query.mood
-    return json.dumps(echonest.get_casual(genre, mood))
 
 
 @route('/api/getrecommendations', method="POST")
