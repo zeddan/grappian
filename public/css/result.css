@@ -34,18 +34,16 @@
     color: #FFE550;
 }
 
-.resultMessage {
+.result-message {
     font-family: "Gotham Bold";
-    /*background-color: #312F2D;*/
     border: 3px solid #fafafa;
     height: 10em;
     width: 10em;
     border-radius: 20em;
-    text-align: center;
     letter-spacing: 0.15em;
     color: #FAFAFA;
-    padding: 4.5em 2.2em;
-    margin: 1em 0;
-    display: -webkit-inline-box;
-    display: -moz-inline-box;
+    margin: 1em auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
