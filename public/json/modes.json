@@ -30,25 +30,143 @@
                 "folk"
             ],
             "moods": [
-                "aggressive",
-                "bouncy",
-                "cold",
+                {
+                    "name" : "aggressive",
+                    "target":
+                    {
+                        "acousticness": "0.02",
+                        "loudness": "0.9",
+                        "tempo": "140",
+                        "instrumentalness": "0.15",
+                        "valence": "0.05",
+                        "energy": "0.9",
+                        "danceabillity" : "0.15",
+                        "liveness": "0.7"
+                    }
+                },
+                {
+                    "name" : "bouncy",
+                    "target":
+                    {
+                        "danceability": "0.8",
+                        "energy": "0.8",
+                        "liveness": "0.1",
+                        "loudness": "0",
+                        "instrumentalness": "0.08",
+                        "speechiness": "0.05"
+                    }
+                },
+                {
+                    "name" : "cold",
+                    "target":
+                    {
+                        "danceability":"0.43",
+                        "mode": "0",
+                        "liveness": "0.1",
+                        "valence":"0.19"
+                    }
+                },
                 "dark",
-                "energetic",
-                "futuristic",
-                "gloomy",
-                "hypnotic",
-                "industrial",
-                "joyous",
-                "laid-back",
-                "mystical",
+                {
+                    "name" : "energetic",
+                    "target":
+                    {
+                        "energy":"1",
+                        "tempo": "130",
+                        "liveness": "0.1"
+                    }
+                },
+                {
+                    "name" : "futuristic",
+                    "target":
+                    {
+                        "accousticness": "0.01",
+                        "liveness": "0.1",
+                        "loudness": "-15",
+                        "instrumentalness": "0.85"
+                    }
+                },
+                {
+                    "name" : "gloomy",
+                    "target":
+                    {
+                        "danceability":"0.13",
+                        "energy": "0.20",
+                        "liveness": "0.10",
+                        "valence":"0.20"
+                    }
+                },
+                {
+                    "name" : "joyous",
+                    "target":
+                    {
+                        "energy":"0.76",
+                        "mode": "1",
+                        "liveness": "0.1",
+                        "valence": "0.82"
+                    }
+                },
+                {
+                    "name" : "laid-back",
+                    "target":
+                    {
+                        "energy": "0.45",
+                        "liveness": "0.1",
+                        "speechiness":"0.08",
+                        "valence": "0.55"
+                    }
+                },
                 "ominous",
-                "poignant",
-                "quiet",
-                "reflective",
-                "sophisticated",
-                "theater",
-                "whimsical"
+                {
+                    "name" : "poignant",
+                    "target":
+                    {
+                        "energy":"0.95",
+                        "liveness": "0.1",
+                        "loudness": "-6.66"
+                    }
+                },
+                {
+                    "name" : "quiet",
+                    "target":
+                    {
+                        "acousticness": "0.8",
+                        "loudness": "0.07",
+                        "tempo": "60",
+                        "instrumentalness": "0.3",
+                        "valence": "0.7",
+                        "energy": "0.14",
+                        "danceabillity" : "0.05",
+                        "liveness": "0.12"
+                    }
+                },
+                {
+                    "name" : "reflective",
+                    "target":
+                    {
+                        "energy":"0.35",
+                        "loudness":"-10.0",
+                        "speechiness":"0.50"
+                    }
+                },
+                {
+                    "name" : "sophisticated",
+                    "target":
+                    {
+                        "danceability" : "0.633",
+                        "energy" : "0.170",
+                        "key" : "0",
+                        "loudness" : "-14.037",
+                        "mode" : "1",
+                        "speechiness" : "0.0411",
+                        "acousticness" : "0.798",
+                        "instrumentalness" : "0",
+                        "liveness" : "0.156",
+                        "valence" : "0.522",
+                        "tempo" : "106.554",
+                        "time_signature" : "4"
+                    }
+                }
             ]
         }
     },
@@ -103,8 +221,17 @@
             },
             {
                 "name": "Happy Roadtrip",
-                "genre": "",
-                "target": {}
+                "genre": [
+                    "happy",
+                    "road-trip"
+                ],
+                "target": {
+                    "acousticness": "0.20",
+                    "danceability": "0.50",
+                    "energy": "0.50",
+                    "popularity": "80",
+                    "valence": "0.90"
+                }
             },
             {
                 "name": "At the dentist",
@@ -128,19 +255,76 @@
             },
             {
                 "name": "Time for exams!",
-                "genre": "",
-                "target": {}
+                "genre": [
+                    "deep-house",
+                    "study"
+                ],
+                "target": {
+                    "acousticness" : "0.536",
+                    "danceability" : "0.568",
+                    "energy" : "0.619",
+                    "instrumentalness" : "0.00000179",
+                    "key" : "0",
+                    "liveness" : "0.0667",
+                    "loudness" : "-4.987",
+                    "mode" : "1",
+                    "speechiness" : "0.0350",
+                    "tempo" : "115",
+                    "time_signature" : "4",
+                    "valence" : "0.212"
+                }
             },
             {
                 "name": "How about no",
-                "genre": "",
-                "target": {}
+                "genre": [
+                    "ambient",
+                    "chill",
+                    "indie"
+                ],
+                "target": {
+                   "acousticness": "0.6",
+                   "danceability": "0.3",
+                   "energy": "0.2",
+                   "instrumentalness": "0.002",
+                   "liveness": "0.2",
+                   "loudness": "-10",
+                   "speechiness": "0.03",
+                   "tempo": "160",
+                   "valence": "0.5"
+                }
             }
         ]
     },
     "expert": {
         "title": "expert",
         "preferences": {
+            "genres": [
+                "acoustic",
+                "afrobeat",
+                "alt-rock",
+                "alternative",
+                "ambient",
+                "anime",
+                "black-metal",
+                "bluegrass",
+                "blues",
+                "bossanova",
+                "brazil",
+                "breakbeat",
+                "british",
+                "cantopop",
+                "chicago-house",
+                "children",
+                "chill",
+                "drum-and-bass",
+                "dub",
+                "dubstep",
+                "edm",
+                "electro",
+                "electronic",
+                "emo",
+                "folk"
+            ],
             "floats": [
                 "danceability",
                 "acousticness",
@@ -174,7 +358,7 @@
                     "street artist": 30,
                     "star": 50,
                     "mainstream": 80
-                }
+                },
             },
             "text": [
                 "tempo",

@@ -53,7 +53,7 @@
                                     'pref-default': preferences.casual.mood==''
                                 }"
                                 ng-click="selectMood($index)">
-                                {{ mood }}
+                                {{ mood.name }}
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,24 @@
                 <div id="expert-view" ng-show="selectedMode == modes[2]">
 
                     <div class="row">
+                        <div class="preferences-h2">{{ titles.expert.genre }}</div>
+                        <div ng-repeat="genre in expert.preferences.genres">
+                            <div class="expert-value col-xs-12 col-sm-6 col-md-4"
+                                ng-model="genre"
+                                ng-init="preferences.expert.genre=''"
+                                ng-class="{
+                                    'pref-active': preferences.expert.genre==genre,
+                                    'pref-inactive': preferences.expert.genre!=genre &amp;&amp;
+                                                     preferences.expert.genre!='',
+                                    'pref-default': preferences.expert.genre==''
+                                }"
+                                ng-click="selectGenre($index, 'expert')">
+                                {{ genre }}
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
                         <!-- key box -->
                         <div class="col-xs-12 col-md-6 expert-box">
                             <div class="preferences-h2">key</div>
@@ -86,8 +103,8 @@
                                 <div class="col-xs-2"
                                     ng-repeat="(key, val) in expert.preferences.presets.key">
                                     <button class="circle-button"
-                                        ng-class="{'circle-button-active': preferences.expert.preset.key==val}"
-                                        ng-click="preferences.expert.preset.key=val">
+                                        ng-class="{'circle-button-active': preferences.expert.key==val}"
+                                        ng-click="preferences.expert.key=val">
                                         {{ key }}
                                     </button>
                                 </div>
@@ -105,7 +122,6 @@
                     </div>
 
                     <div class="row">
-
                         <!-- scale box -->
                         <div class="col-xs-12 col-md-6 expert-box">
                             <div class="preferences-h2">scale</div>
@@ -113,8 +129,8 @@
                                 <div class="col-xs-6"
                                     ng-repeat="(scale, val) in expert.preferences.presets.mode">
                                     <button class="rounded-button"
-                                        ng-class="{'rounded-button-active': preferences.expert.preset.mode==val}"
-                                        ng-click="preferences.expert.preset.mode=val">
+                                        ng-class="{'rounded-button-active': preferences.expert.mode==val}"
+                                        ng-click="preferences.expert.mode=val">
                                         {{ scale }}
                                     </button>
                                 </div>
@@ -130,19 +146,21 @@
                                 ng-model="preferences.expert.duration_ms"/>
                         </div> <!-- song length box -->
                     </div>
+
                     <div class="expert-box">
                         <div class="preferences-h2">popularity</div>
                         <div class="row center-box">
                             <div class="col-xs-6 col-md-3"
                                 ng-repeat="(popularity, val) in expert.preferences.presets.popularity">
                                 <button class="rounded-button popularity-button"
-                                    ng-class="{'rounded-button-active': preferences.expert.preset.popularity==val}"
-                                    ng-click="preferences.expert.preset.popularity=val">
+                                    ng-class="{'rounded-button-active': preferences.expert.popularity==val}"
+                                    ng-click="preferences.expert.popularity=val">
                                     <div ng-repeat="n in range($index+1)" class="glyphicon glyphicon-star footer-content-icon" aria-hidden="true"></div>
                                 </button>
                             </div>
                         </div>
                     </div>
+
                     <div ng-repeat="float in expert.preferences.floats">
                         <div class="preferences-h2">
                             {{ float }}

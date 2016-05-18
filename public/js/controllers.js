@@ -32,6 +32,9 @@
             'casual': {
                 'genre': 'genre',
                 'mood': 'mood'
+            },
+            'expert': {
+                'genre': 'genre'
             }
         };
         $scope.modes = ['casual', 'theme', 'expert'];
@@ -61,13 +64,12 @@
          };
 
         $scope.submit = function() {
-            //one spotifyService.getRecommendations after the if-statments should be enough
             var req = {};
             var previewObject = [];
             if ($scope.selectedMode == $scope.modes[0]) {
                 $rootScope.preferences = $scope.preferences.casual;
                 req.genre = $scope.preferences.casual['genre'];
-                console.log(req.genre);
+                req.target = $scope.preferences.casual.mood.target;
                 spotifyService.getRecommendations(req, function(tracks) {
                     $rootScope.tracks = tracks
                     console.log($rootScope.tracks);
@@ -84,25 +86,22 @@
             else if ($scope.selectedMode == $scope.modes[1]) {
                 $rootScope.preferences = $scope.preferences.theme;
                 req = $scope.preferences.theme;
-                console.log(req);
                 spotifyService.getRecommendations(req, function(tracks) {
                     $rootScope.tracks = tracks
-                    console.log($rootScope.tracks);
                     previewObject = tracks.slice(0, 3);
                     $rootScope.previews = [];
                     previewObject.forEach(function(e) {
                         $rootScope.previews.push(e.song_id);
 
                     });
-                    console.log($rootScope.previews);
                     $location.path('/review');
-                /*    spotifyService.createPlaylist(baseName, $rootScope.tracks); */
                 });
             }
             else if ($scope.selectedMode == $scope.modes[2]) {
+                $rootScope.preferences = $scope.preferences.expert;
+                req.genre = $scope.preferences.expert['genre'];
                 req['target'] = $scope.preferences.expert;
-                //genre should be selectable
-                req.genre = 'ambient';
+                delete $scope.preferences.expert['genre'];
                 $rootScope.preferences = req;
                 spotifyService.getRecommendations(req, function(tracks) {
                     $rootScope.tracks = tracks;
@@ -113,7 +112,6 @@
 
                     });
                     $location.path('/review');
-                    /*    spotifyService.createPlaylist(baseName, $rootScope.tracks); */
                 });
             }
             $rootScope.req = req;
