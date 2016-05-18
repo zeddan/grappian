@@ -24,6 +24,13 @@ def update_access_token(request):
     return access_token
 
 
+def decode_base64(data):
+    missing_padding = 4 - len(data) % 4
+    if missing_padding:
+        data += b'=' * missing_padding
+    return base64.b64decode(data)
+
+
 @hook('before_request')
 def strip_path():
     request.environ['PATH_INFO'] = request.environ['PATH_INFO'].rstrip('/')
@@ -88,12 +95,6 @@ def get_recommendations():
     return json.dumps(spotify.get_recommendations(access_token, genre, target))
 
 
-@route('/api/getimages', method="POST")
-def get_artist_image():
-    ids = request.json.get('artistid')
-    return spotify.get_artist_image(ids)
-
-
 @route('/me')
 def me():
     access_token = update_access_token(request)
@@ -102,7 +103,7 @@ def me():
 
 @route('/api/create-playlist', method='POST')
 def create_playlist():
-    user_id = base64.b64decode(request.json.get('user_id')).decode('utf-8')
+    user_id = decode_base64(request.json.get('user_id')).decode('utf-8')
     p_name = request.json.get('name')
     tracks = request.json.get('tracks')
     access_token = update_access_token(request)
