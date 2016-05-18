@@ -9,7 +9,8 @@
     '$location',
     '$rootScope',
     'spotifyService',
-    function($scope, $http, $location, $rootScope, spotifyService) {
+    'variableService',
+    function($scope, $http, $location, $rootScope, spotifyService, variableService) {
         $http.get('json/modes.json').success(function(data) {
             $scope.casual = data.casual;
             $scope.theme = data.theme;
@@ -59,18 +60,17 @@
 
          $scope.selectTheme = function(index) {
             $scope.preferences.theme = $scope.theme.presets[index];
-            console.log($scope.preferences.theme);
          };
 
         $scope.submit = function() {
             var req = {};
             if ($scope.selectedMode == $scope.modes[0]) {
-                $rootScope.preferences = $scope.preferences.casual;
+                variableService.setPreferences($scope.preferences.casual);
                 req.genre = $scope.preferences.casual['genre'];
                 req.target = $scope.preferences.casual.mood.target;
             }
             else if ($scope.selectedMode == $scope.modes[1]) {
-                $rootScope.preferences = $scope.preferences.theme;
+                variableService.setPreferences($scope.preferences.theme);
                 req = $scope.preferences.theme;
             }
             else if ($scope.selectedMode == $scope.modes[2]) {
@@ -81,11 +81,10 @@
                 $rootScope.preferences = req;
             }
             spotifyService.getRecommendations(req, function(tracks) {
-                $rootScope.tracks = tracks
-                $rootScope.createPreviews(tracks);
+                variableService.setTracks(tracks);
+                variableService.setPreviews(tracks);
                 $location.path('/review');
             });
-            $rootScope.req = req;
         };
         $scope.range = function(range) {
             var input = [];
@@ -94,15 +93,6 @@
             return input;
         };
         $scope.selectedMode = $scope.modes[0];
-
-        $rootScope.createPreviews = function(tracks) {
-            var previewObject = [];
-            $rootScope.previews = [];
-            previewObject = tracks.slice(0, 3);
-            previewObject.forEach(function(e) {
-                $rootScope.previews.push(e.song_id);
-            });
-        }
     }]);
 
     app.controller('LoginController', [function() {}]);
@@ -112,38 +102,39 @@
         '$rootScope',
         '$route',
         '$location',
+        '$timeout',
         'spotifyService',
-        function($scope, $rootScope, $route, $location, spotifyService) {
+        'variableService',
+        function($scope, $rootScope, $route, $location, $timeout, spotifyService, variableService) {
+            $scope.previews = variableService.getPreviews();
             $scope.submit = function() {
-                var req = {};
-                var date = new Date();
-                var baseName = date.getDate() + '/' + (date.getMonth() + 1) + ' grappian ';
-                req.url = 'http://127.0.0.1:8080/api/casual';
-                if($rootScope.preferences['name']) {
-                    baseName += $rootScope.preferences['name'];
-                } else if ($rootScope.preferences['genre']) {
-                    baseName += $rootScope.preferences['genre'];
-                } else {
-                    baseName += 'ambient';
-                }
-                spotifyService.createPlaylist(baseName, $rootScope.tracks);
-                $location.path('/result');
+                var tracks = variableService.getTracks();
+                var preferences = variableService.getPreferences();
+                spotifyService.createPlaylist(tracks, preferences, function(link, name) {
+                    variableService.setLink(link);
+                    variableService.setName(name);
+                    $location.path('/result');
+                });
             }
-
             $scope.retry = function() {
                 var req = {};
-                req = $rootScope.preferences;
+                req = variableService.getPreferences();
                 spotifyService.getRecommendations(req, function(tracks) {
-                    $rootScope.tracks = tracks;
-                    $rootScope.createPreviews(tracks);
+                    variableService.setTracks(tracks);
+                    variableService.setPreviews(tracks);
                     $route.reload();
                 });
             }
+
+            $scope.previews
     }]);
 
     app.controller('ResultController', [
     '$scope',
-    function($scope) {
+    'variableService',
+    function($scope, variableService) {
+        $scope.playlistName = variableService.getName();
+        $scope.playlistLink = variableService.getLink();
     }]);
 
     app.filter('trustAsResourceUrl', ['$sce', function($sce) {
