@@ -32,6 +32,9 @@
             'casual': {
                 'genre': 'genre',
                 'mood': 'mood'
+            },
+            'expert': {
+                'genre': 'genre'
             }
         };
         $scope.modes = ['casual', 'theme', 'expert'];
@@ -64,16 +67,18 @@
             if ($scope.selectedMode == $scope.modes[0]) {
                 variableService.setPreferences($scope.preferences.casual);
                 req.genre = $scope.preferences.casual['genre'];
+                req.target = $scope.preferences.casual.mood.target;
             }
             else if ($scope.selectedMode == $scope.modes[1]) {
                 variableService.setPreferences($scope.preferences.theme);
                 req = $scope.preferences.theme;
             }
             else if ($scope.selectedMode == $scope.modes[2]) {
+                $rootScope.preferences = $scope.preferences.expert;
+                req.genre = $scope.preferences.expert['genre'];
                 req['target'] = $scope.preferences.expert;
-                //genre should be selectable
-                req.genre = 'ambient';
-                variableService.setPreferences(req);
+                delete $scope.preferences.expert['genre'];
+                $rootScope.preferences = req;
             }
             spotifyService.getRecommendations(req, function(tracks) {
                 variableService.setTracks(tracks);
