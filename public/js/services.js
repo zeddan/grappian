@@ -21,6 +21,7 @@
                 }
             );
         };
+
         service.getTracks = function(req, callback) {
             var tracks = [];
             req.forEach(function(e) {
@@ -30,12 +31,28 @@
             callback(tracks);
             $location.path('/review');
         };
-        service.createPlaylist = function(playlistName, tracks) {
+
+        var createPlaylistName = function(preferences) {
+            var date = new Date();
+            var baseName = date.getDate() + '/' + (date.getMonth() + 1) + ' grappian ';
+            var preferences = preferences;
+            if (preferences['name']) {
+                baseName += preferences['name'];
+            } else if (preferences['genre']) {
+                baseName += preferences['genre'];
+            } else {
+                baseName += 'ambient';
+            }
+            return baseName;
+        };
+
+        service.createPlaylist = function(tracks, preferences, callback) {
             var req = {};
             var url = 'http://127.0.0.1:8080/api/create-playlist';
+            var baseName = createPlaylistName(preferences);
             var data = {
                 'user_id': $cookies.get('username'),
-                'name': playlistName,
+                'name': baseName,
                 'tracks': tracks,
                 'access_token': $cookies.get('access_token'),
                 'refresh_token': $cookies.get('refresh_token')
@@ -43,19 +60,65 @@
 
             service.getTracks(tracks, function(tracks){
                 data.tracks = tracks;
-                console.log(data.tracks);
                 $http.post(url, JSON.stringify(data)).then(
                     function(res) {
-                        $rootScope.playlistLink = res.data;
-                        $rootScope.playlistName = playlistName;
-                        console.log($rootScope.playlistLink);
+                        callback(res.data, baseName);
                     },
                     function(err) {
                         console.log("error: ", err);
                     }
                 );
             });
+
         };
         return service;
     }]);
+
+    app.factory('variableService', [
+        '$rootScope',
+        function($rootScope) {
+            var preferences = {};
+            var tracks = [];
+            var service = {};
+            var link = "";
+            var name = "";
+            var previews = [];
+            service.setPreferences = function(pref) {
+                preferences = pref;
+            };
+            service.getPreferences = function() {
+                return preferences;
+            };
+            service.setTracks = function(trackList) {
+                tracks = trackList;
+            };
+            service.getTracks = function() {
+                return tracks;
+            };
+            service.setLink = function(playlistLink) {
+                link = playlistLink;
+            };
+            service.getLink = function() {
+                return link;
+            };
+            service.setName = function(playlistName) {
+                name = playlistName;
+            };
+            service.getName = function() {
+                return name;
+            }
+            service.setPreviews = function(tracks) {
+                var previewObject = [];
+                previews = [];
+                previewObject = tracks.slice(0, 3);
+                previewObject.forEach(function(e) {
+                    previews.push(e.song_id);
+                });
+            };
+            service.getPreviews = function() {
+                return previews;
+            }
+            return service;
+        }]);
+
 }());
