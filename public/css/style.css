@@ -1,6 +1,9 @@
 @import url('modes.css');
 @import url('result.css');
 
+:focus {outline:none !important;}
+::-moz-focus-inner {border:0 !important;}
+
 @font-face {
     font-family: "Gotham Bold";
     src: url('../fonts/gotham-bold.ttf');
