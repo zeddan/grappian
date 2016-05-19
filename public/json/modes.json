@@ -262,8 +262,19 @@
             },
             {
                 "name": "Maximize",
-                "genre": "",
-                "target": {}
+                "genre": [
+                    "edm",
+                    "techno",
+                    "hardstyle"
+                ],
+                "target": {
+                	"danceability": "10",
+                	"energy": "10",
+                	"liveness": "0.15",
+                	"loudness": "-5",
+                	"tempo": "200",
+                	"valence": "0.6"
+                }
             },
             {
                 "name": "Time for exams!",
