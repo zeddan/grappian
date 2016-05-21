@@ -236,8 +236,10 @@
             },
             {
                 "name": "At the dentist",
-                "genre": "",
-                "target": {}
+                "tracks": [
+                  "0T5BXRbuiCc83QfTO8x7FS",
+                  "0DOJhLTRMHHzNOa8ahmaq4"
+                ]
             },
             {
                 "name": "Sentimental Busride",
@@ -257,8 +259,12 @@
             },
             {
                 "name": "Floor killer",
-                "genre": "",
-                "target": {}
+                "tracks": [
+                  "3SuR98OGjebItVBHoH71i1",
+                  "1d3SUn8IcOyHdG2gBHkY8N",
+                  "7JyYPWWrPELCLLTJ7WYtUF",
+                  "6Ldmrgs5ngh9Oe4fCJ13KT"
+                ]
             },
             {
                 "name": "Maximize",
