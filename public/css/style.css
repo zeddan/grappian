@@ -25,6 +25,24 @@ body {
 .header {
 	height: 60px;
 	width: 100%;
+	padding-top: 2em;
+	padding-right: 2em;
+}
+
+#logo {
+    float: left;
+}
+
+#logout {
+    float: right;
+    cursor: pointer;
+    color: #30C49F;
+    font-weight: 600;
+}
+
+#logout:hover {
+    transition: all 0.1s ease;
+    color: #fafafa;
 }
 
 .page_title {

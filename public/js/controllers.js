@@ -1,7 +1,39 @@
 (function() {
     'use strict';
 
-    var app = angular.module('controllers', []);
+    var app = angular.module('controllers', ['ngCookies']);
+
+    app.controller('NavController', [
+    '$scope',
+    '$cookies',
+    '$window',
+    '$location',
+    '$http',
+    function($scope, $cookies, $window, $location, $http) {
+        $scope.logout = function() {
+            var url = '//accounts.spotify.com/';
+            var title = 'logout';
+            var w = '900';
+            var h = '500';
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+            var top = ((height / 2) - (h / 2)) + dualScreenTop;
+            var popup = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+            var timer = setInterval(function() {
+                if (popup.closed) {
+                    clearInterval(timer);
+                    $cookies.remove('access_token');
+                    $cookies.remove('refresh_token');
+                    $cookies.remove('username');
+                    $window.location.href = 'http://localhost:8080/authorize';
+                }
+            }, 300);
+        };
+
+    }]);
 
     app.controller('ModesController', [
     '$scope',

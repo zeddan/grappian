@@ -13,10 +13,13 @@
 </head>
 
 <body>
-    <div class="header">
-        <a href="/#/modes">
+    <div class="header" ng-controller="NavController">
+        <a id="logo" href="/#/modes">
             <img alt="logo" src="images/logo.png">
         </a>
+        <div id="logout" ng-click="logout()">
+            switch user
+        </div>
     </div>
     <div ng-view></div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
