@@ -23,20 +23,24 @@ body {
 }
 
 .header {
-	height: 60px;
-	width: 100%;
-	padding-top: 2em;
-	padding-right: 2em;
+    height: 75px;
+    width: 100%;
+    padding-top: 28px;
+    padding-right: 2em;
+    padding-left: 1em;
+    background: rgba(81,201,163,0.5);
 }
 
 #logo {
+    width: 200px;
+    margin-top: -10px;
     float: left;
 }
 
 #logout {
     float: right;
     cursor: pointer;
-    color: #30C49F;
+    color: #fafafa;
     font-weight: 600;
 }
 
