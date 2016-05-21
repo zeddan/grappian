@@ -9,8 +9,14 @@ from bottle import route, run, request, response, static_file, \
 
 
 def update_access_token(request):
-    access_token = request.json.get('access_token')
-    refresh_token = request.json.get('refresh_token')
+    access_token = None
+    refresh_token = None
+    if request.method == 'GET':
+        access_token = request.query.get('access_token')
+        refresh_token = request.query.get('refresh_token')
+    elif request.method == 'POST':
+        access_token = request.json.get('access_token')
+        refresh_token = request.json.get('refresh_token')
     if access_token:
         pass
     elif refresh_token:
@@ -20,7 +26,7 @@ def update_access_token(request):
                             max_age=expires_in,
                             path='/')
     else:
-        redirect('http://127.0.0.1:8080/authorize')
+        redirect('http://localhost:8080/authorize')
     return access_token
 
 
@@ -91,11 +97,17 @@ def authorize_callback():
 def get_recommendations():
     genre = request.json.get('genre')
     target = request.json.get('target')
+    tracks = request.json.get('tracks')
     access_token = update_access_token(request)
-    return json.dumps(spotify.get_recommendations(access_token, genre, target))
+    res = None
+    if tracks:
+        res = spotify.get_rec_from_tracks(access_token, tracks)
+    else:
+        res = spotify.get_recommendations(access_token, genre, target)
+    return json.dumps(res)
 
 
-@route('/me')
+@route('/me', method='GET')
 def me():
     access_token = update_access_token(request)
     return spotify.me(access_token)

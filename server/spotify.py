@@ -47,3 +47,13 @@ def get_recommendations(access_token, genre, target):
     for track in response[u'tracks']:
         data.append({'song_id': track[u'uri']})
     return data
+
+def get_rec_from_tracks(access_token, tracks):
+    url = '%s/recommendations' % (base_url)
+    headers = {'Authorization': 'Bearer %s' % access_token}
+    params = {'seed_tracks': tracks}
+    response = requests.get(url, headers=headers, params=params).json()
+    data = []
+    for track in response[u'tracks']:
+        data.append({'song_id': track[u'uri']})
+    return data
