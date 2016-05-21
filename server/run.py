@@ -107,7 +107,7 @@ def get_recommendations():
     return json.dumps(res)
 
 
-@route('/me', method='GET')
+@route('/me')
 def me():
     access_token = update_access_token(request)
     return spotify.me(access_token)
