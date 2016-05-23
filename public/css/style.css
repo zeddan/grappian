@@ -46,7 +46,7 @@ body {
 
 #logout:hover {
     transition: all 0.1s ease;
-    color: #fafafa;
+    border-bottom: 3px solid;
 }
 
 .page_title {
