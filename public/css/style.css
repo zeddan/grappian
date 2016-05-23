@@ -20,6 +20,7 @@ body {
     background: -webkit-linear-gradient(45deg,  rgba(0,190,155,1) 0%,rgba(255,226,181,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(45deg,  rgba(0,190,155,1) 0%,rgba(255,226,181,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00be9b', endColorstr='#ffe2b5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    cursor: default;
 }
 
 .header {
