@@ -20,6 +20,9 @@
                 "chicago-house",
                 "children",
                 "chill",
+                "deep-house",
+                "detroit-techno",
+                "disco",
                 "drum-and-bass",
                 "dub",
                 "dubstep",
@@ -27,7 +30,11 @@
                 "electro",
                 "electronic",
                 "emo",
-                "folk"
+                "folk",
+                "house",
+                "idm",
+                "minimal-techno",
+                "techno"
             ],
             "moods": [
                 {
@@ -345,6 +352,9 @@
                 "chicago-house",
                 "children",
                 "chill",
+                "deep-house",
+                "detroit-techno",
+                "disco",
                 "drum-and-bass",
                 "dub",
                 "dubstep",
@@ -352,7 +362,11 @@
                 "electro",
                 "electronic",
                 "emo",
-                "folk"
+                "folk",
+                "house",
+                "idm",
+                "minimal-techno",
+                "techno"
             ],
             "floats": [
                 "danceability",
