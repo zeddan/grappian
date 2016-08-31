@@ -34,9 +34,8 @@
                 "house",
                 "idm",
                 "minimal-techno",
-                "techno"
+                "techno",
                 "hip-hop",
-                "folk",
                 "k-pop",
                 "reggae"
             ],
@@ -77,12 +76,10 @@
                         "valence":"0.19"
                     }
                 },
-               {
+                {
                    "name": "dark",
-                   "target":
-                 {
-                }
-                 },
+                   "target": {}
+                },
                 {
                     "name" : "energetic",
                     "target":
@@ -134,10 +131,7 @@
                 },
                 {
                     "name": "ominous",
-                    "target":
-                 {
-
-                 }
+                    "target": {}
                 },
                 {
                     "name" : "poignant",
@@ -188,7 +182,8 @@
                         "tempo" : "106.554",
                         "time_signature" : "4"
                     }
-                },{
+                },
+                {
                     "name":"lagom",
                     "target":
                     {
@@ -273,16 +268,16 @@
             {
                 "name": "At the dentist",
                 "tracks": [
-                  "0T5BXRbuiCc83QfTO8x7FS",
-                  "0DOJhLTRMHHzNOa8ahmaq4"
+                    "0T5BXRbuiCc83QfTO8x7FS",
+                    "0DOJhLTRMHHzNOa8ahmaq4"
                 ]
             },
             {
                 "name": "Sentimental Busride",
                 "genre": [
-                        "folk",
-                        "road-trip",
-                        "honky-tonk"
+                    "folk",
+                    "road-trip",
+                    "honky-tonk"
                 ],
                 "target": {
                     "acousticness": "0.8",
@@ -296,10 +291,10 @@
             {
                 "name": "Floor killer",
                 "tracks": [
-                  "3SuR98OGjebItVBHoH71i1",
-                  "1d3SUn8IcOyHdG2gBHkY8N",
-                  "7JyYPWWrPELCLLTJ7WYtUF",
-                  "6Ldmrgs5ngh9Oe4fCJ13KT"
+                    "3SuR98OGjebItVBHoH71i1",
+                    "1d3SUn8IcOyHdG2gBHkY8N",
+                    "7JyYPWWrPELCLLTJ7WYtUF",
+                    "6Ldmrgs5ngh9Oe4fCJ13KT"
                 ]
             },
             {
@@ -347,15 +342,15 @@
                     "indie"
                 ],
                 "target": {
-                   "acousticness": "0.6",
-                   "danceability": "0.3",
-                   "energy": "0.2",
-                   "instrumentalness": "0.002",
-                   "liveness": "0.2",
-                   "loudness": "-10",
-                   "speechiness": "0.03",
-                   "tempo": "160",
-                   "valence": "0.5"
+                    "acousticness": "0.6",
+                    "danceability": "0.3",
+                    "energy": "0.2",
+                    "instrumentalness": "0.002",
+                    "liveness": "0.2",
+                    "loudness": "-10",
+                    "speechiness": "0.03",
+                    "tempo": "160",
+                    "valence": "0.5"
                 }
             }
         ]
