@@ -35,6 +35,10 @@
                 "idm",
                 "minimal-techno",
                 "techno"
+                "hip-hop",
+                "folk",
+                "k-pop",
+                "reggae"
             ],
             "moods": [
                 {
@@ -73,7 +77,12 @@
                         "valence":"0.19"
                     }
                 },
-                "dark",
+               {
+                   "name": "dark",
+                   "target":
+                 {
+                }
+                 },
                 {
                     "name" : "energetic",
                     "target":
@@ -123,7 +132,13 @@
                         "valence": "0.55"
                     }
                 },
-                "ominous",
+                {
+                    "name": "ominous",
+                    "target":
+                 {
+
+                 }
+                },
                 {
                     "name" : "poignant",
                     "target":
@@ -172,6 +187,20 @@
                         "valence" : "0.522",
                         "tempo" : "106.554",
                         "time_signature" : "4"
+                    }
+                },{
+                    "name":"lagom",
+                    "target":
+                    {
+                        "accousticness": "0.500",
+                        "danceability": "0.500",
+                        "energy": "0.500",
+                        "instrumentalness": "0.500",
+                        "liveness": "0.500",
+                        "loudness": "0.500",
+                        "popularity": "50",
+                        "speechiness": "0.500",
+                        "valence": "0.500"
                     }
                 }
             ]
